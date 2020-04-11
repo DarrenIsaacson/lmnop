@@ -14,3 +14,4 @@ class Event(scrapy.Item):
     url = scrapy.Field()
     time = scrapy.Field()
     ages = scrapy.Field()
+    date = scrapy.Field()

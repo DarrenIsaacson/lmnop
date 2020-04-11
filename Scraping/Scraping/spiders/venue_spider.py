@@ -11,6 +11,7 @@ class Event(scrapy.Item):
     url = scrapy.Field()
     time = scrapy.Field()
     ages = scrapy.Field()
+    date = scrapy.Field()
 
 class QuotesSpider(scrapy.Spider):
     name = 'quotes'
@@ -20,13 +21,14 @@ class QuotesSpider(scrapy.Spider):
 
     def parse(self, response):
         page = response.css('body').get()
-        
 
-        matches = re.findall("\"field-item even\"><a href=\"(/event[^\"]+)\">([^<]+)[\s\S]+?a href=\"/venue[^\"]+\">([^<]+)[\s\S]+?\"date-display-single\">([^<]+)[\s\S]+?even\">([^<]+)", page)
+        dates = re.findall("<h3><div class=\"date-repeat-instance\"><span class=\"date-display-single\">([^<]+)([\s\S]+?)</article><!-- /.node -->", page)
+        for date in dates:
+            matches = re.findall("\"field-item even\"><a href=\"(/event[^\"]+)\">([^<]+)[\s\S]+?a href=\"/venue[^\"]+\">([^<]+)[\s\S]+?\"date-display-single\">([^<]+)[\s\S]+?even\">([^<]+)", date[1])
         
-        for match in matches:
-            event = Event(url = 'https://first-avenue.com' + match[0], name = match[1], venue = match[2], time = match[3], ages = match[4])
-            all_events.append(event)
+            for match in matches:
+                event = Event(url = 'https://first-avenue.com' + match[0], name = match[1], venue = match[2], time = match[3], ages = match[4], date = date[0])
+                all_events.append(event)
 
         """next_page = response.css('li.next a::attr("href")').get()
         if next_page is not None:
@@ -35,3 +37,5 @@ class QuotesSpider(scrapy.Spider):
 process = CrawlerProcess()
 process.crawl(QuotesSpider)
 process.start()
+
+print(all_events[1])
