@@ -1,9 +1,22 @@
 import scrapy
 from scrapy.crawler import CrawlerProcess
 import re
+from datetime import date
 #from ..items import Event
 all_events = []
 
+def add_months(num_of_months):
+    today = date.today()
+    month = today.month + num_of_months
+    year = today.year
+
+    if month < 1 or month > 12: 
+        # the num_months / abs(num_months) is to get the sign (+/-) of the number of months and add / subtract accordingly.
+        month += 12 * -(num_of_months / abs(num_of_months))
+        year += 1 * (num_of_months / abs(num_of_months))
+
+    return [int(year), int(month)]
+    
 class Event(scrapy.Item):
     name = scrapy.Field()
     artist = scrapy.Field()
@@ -13,11 +26,21 @@ class Event(scrapy.Item):
     ages = scrapy.Field()
     date = scrapy.Field()
 
-class QuotesSpider(scrapy.Spider):
-    name = 'quotes'
-    start_urls = [
-        'https://first-avenue.com/calendar',
-    ]
+class VenueSpider(scrapy.Spider):
+    name = 'venues'
+    today = date.today()
+
+    first_concert_month = today.month - 6
+    first_concert_year = today.year
+    if first_concert_month < 1:
+        first_concert_month += 12
+        first_concert_year -= 1
+
+    start_urls = []
+
+    for x in range(-3, 4):
+        year_month = add_months(x)
+        start_urls.append('https://first-avenue.com/calendar/all/{year}-{month}'.format(year = year_month[0], month = year_month[1]))
 
     def parse(self, response):
         page = response.css('body').get()
@@ -34,8 +57,12 @@ class QuotesSpider(scrapy.Spider):
         if next_page is not None:
             yield response.follow(next_page, self.parse)"""
 
+
+print(all_events)
+
 process = CrawlerProcess()
-process.crawl(QuotesSpider)
+process.crawl(VenueSpider)
 process.start()
 
+print()
 print(all_events[1])
