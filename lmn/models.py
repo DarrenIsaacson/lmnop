@@ -63,3 +63,22 @@ class Note(models.Model):
 
     def __str__(self):
         return 'Note for user ID {} for show ID {} with title {} text {} posted on {}'.format(self.user, self.show, self.title, self.text, self.posted_date)
+
+
+class UProfile(models.Model):
+    #user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
+    #fName = models.CharField(max_length=200, blank=False)
+    #lName = models.CharField(max_length=200, blank=False)
+    #birthDate, Date
+    #city = models.CharField(max_length=200, blank=False)
+    #state, CharField max_length 2
+    #zip, int, max_length 5
+    #favoriteVenue
+    #favoriteArtist
+    #profilePicture
+    #reviewCount (number of reviews made by user, can use for 'badge/reward')
+    #description
+    #profilePicture
+
+    def __str_(self):
+        return ''.format()

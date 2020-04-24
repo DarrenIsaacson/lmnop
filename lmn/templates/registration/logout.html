@@ -2,10 +2,19 @@
 {% block content %}
 
 
+<<<<<<< HEAD
 <!--Logout Message, Carson Richmond 4/28/20
 	served through lmn/urls.py-->
 
 <h2 id='logout_message'>Thank you for using LMNOP! See you next time!</h2>
+=======
+<!-- A user's profile page.
+
+Includes list of user's notes with title and preview of text.
+Text truncated to 200 characters. -->
+
+<h2 id='logout_message'>Thank you for using LMNOP {{ user.username }}! See you next time!</h2>
+>>>>>>> 5b29338... Start of user profile table
 
 <p>Didn't mean to sign out? <a href="{% url 'lmn:login' %}?next={{ request.path }}">Log back in!</a></p>
 
