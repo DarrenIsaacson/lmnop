@@ -67,8 +67,6 @@ class Note(models.Model):
 #user profile table
 class UProfile(models.Model):
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
-    fName = models.CharField(max_length=200, blank=False)
-    lName = models.CharField(max_length=200, blank=True, null=True)
     birthday = birthday.fields.BirthdayField(blank=False) #found from https://pypi.org/project/django-birthday/
     city = models.CharField(max_length=200, blank=True, null=True)
     state = models.CharField(max_length=2, blank=False, null=False)
@@ -81,11 +79,14 @@ class UProfile(models.Model):
     def updateUserProfile():
 
     def saveUserProfilePicture():
+        
 
     def deleteUserProfilePicture ():
+
+    def changeUserProfilePicture():
 
 
 
     def __str_(self):
         proPic_str = self.profilePicture.url if self.profilePicture else 'no photo'
-        return 'User ID = {}, First Name = {}, Last Name = {}, Birthday = {}, City = {},\n State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.proPic_str, self.description)
+        return 'User ID = {}, Birthday = {}, City = {},\n State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.proPic_str, self.description)
