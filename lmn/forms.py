@@ -84,3 +84,24 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
 
         return user
+        
+class UserProfileForm(UserCreationForm):
+
+    class Meta:
+        model = UProfile
+        fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'profilePicture', 'description')
+
+    def save(self, commit=True):
+        uProfile = super(UserProfileForm, self).save(commit=False)
+        uProfile.birthday = self['birthday']
+        uProfile.city = self['city']
+        uProfile.state = self['state']
+        uProfile.favoriteVenue = self['favoriteVenue']
+        uProfile.favoriteArtist = self['favoriteArtist']
+        uProfile.profilePicture = self['profilePicture']
+        uProfile.description = self['description']
+
+        if commit:
+            user.save()
+
+        return uProfile   

@@ -1,0 +1,15 @@
+{% extends 'lmn/base.html' %}
+
+{% block content %}
+
+<h1></h1>
+
+<form method='post' action="">
+	{% csrf_token %}
+	<table id="user_profile_form">
+		{{ form.as_table }}
+	</table>
+	<button type="submit">Update Profile</button>
+</form>
+
+{% endblock %}
