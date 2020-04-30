@@ -1,7 +1,9 @@
 from django import forms
 from .models import Note
-
+from django.contrib.auth.models import UProfile
 from django.contrib.auth.forms import UserCreationForm
+
+#Need to import UProfile class from models
 from django.contrib.auth.models import User
 from django.forms import ValidationError
 
@@ -85,7 +87,7 @@ class UserRegistrationForm(UserCreationForm):
 
         return user
         
-class UserProfileForm(UserCreationForm):
+class UserProfileForm(forms.Form):
 
     class Meta:
         model = UProfile

@@ -71,23 +71,22 @@ class Note(models.Model):
 #user profile table
 class UProfile(models.Model):
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
-    birthday = birthday.fields.BirthdayField(blank=False) #found from https://pypi.org/project/django-birthday/
+    birthday = models.DateTimeField(blank=False) #found from https://pypi.org/project/django-birthday/
     city = models.CharField(max_length=200, blank=True, null=True)
     state = models.CharField(max_length=2, blank=False, null=False)
     favoriteVenue = models.CharField(max_length=200, blank=True, null=True)
     favoriteArtist = models.CharField(max_length=200, blank=True, null=True)
     profilePicture = models.ImageField(upload_to='userProfile_image/', blank=True, null=True)
-    description = TextField(max_length=3000, blank=True, null=True)
+    description = models.TextField(max_length=3000, blank=True, null=True)
 
-    #scripts to add, update, pull, & delete from the profile
+    '''#scripts to add, update, pull, & delete from the profile
     def updateUserProfile():
 
-    def saveUserProfilePicture():
-        
+    def saveUserProfilePicture():        
 
     def deleteUserProfilePicture ():
 
-    def changeUserProfilePicture():
+    def changeUserProfilePicture():'''
 
 
 
