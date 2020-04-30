@@ -36,12 +36,17 @@ class Venue(models.Model):
 
 ''' A show - one artist playing at one venue at a particular date. '''
 class Show(models.Model):
-    show_date = models.DateTimeField(blank=False)
+    
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, blank=False)
+    url = models.CharField(max_length=400, blank=False)
+    time = models.CharField(max_length=40, blank=False)
+    ages = models.CharField(max_length=50, blank=False)
+    show_date = models.DateTimeField(blank=False)
 
     def __str__(self):
-        return 'Show with artist {} at {} on {}'.format(self.artist, self.venue, self.show_date)
+        return 'Show with artist {} at {}, featuring {}, link: {}, starting at {}, ages {}, on {} '.format(self.artist, self.venue, self.name, self.url, self.time, self.ages, self.show_date)
 
 
 ''' One user's opinion of one show. '''
