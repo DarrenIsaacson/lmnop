@@ -139,4 +139,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Where to send user after successful login if no other page is provided.
 # Should provide the user object.
 LOGIN_REDIRECT_URL = 'lmn:my_user_profile'
+''' Commented out so the logout process usess the URL on lmn/urls.py,
 LOGOUT_REDIRECT_URL = 'lmn:homepage'
+'''
