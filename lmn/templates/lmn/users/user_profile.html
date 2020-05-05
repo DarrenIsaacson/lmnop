@@ -9,13 +9,9 @@
 
 Includes list of user's notes with title and preview of text.
 Text truncated to 200 characters. -->
-<form method='post' action="">
-	{% csrf_token %}
-	<table id="user_profile_form">
-		{{ form.as_table }}
-	</table>
-	<button type="submit">Update Profile</button>
-</form>
+
+<!--TODO add if statement here so only shown if if user is logged in, edit profile button -->
+<a href="{% url 'lmn:my_user_profile'  %}">Edit profile</a>
 
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
 {% for note in notes %}

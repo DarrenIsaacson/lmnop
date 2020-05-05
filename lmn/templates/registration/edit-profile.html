@@ -4,7 +4,7 @@
 
 <h1></h1>
 
-<form method='post' action="">
+<form method='post' action="{% url 'lmn:my_user_profile' %}">
 	{% csrf_token %}
 	<table id="user_profile_form">
 		{{ form.as_table }}
@@ -13,3 +13,5 @@
 </form>
 
 {% endblock %}
+
+

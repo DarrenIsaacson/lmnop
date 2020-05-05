@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+<<<<<<< HEAD
 #import birthday
+=======
+# import birthday
+>>>>>>> b2a8b0b... notes on user profile
 # Every model gets a primary key field by default.
 
 # Users, venues, shows, artists, notes

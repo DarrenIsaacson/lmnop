@@ -92,6 +92,7 @@ class UserProfileForm(forms.ModelForm):
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'profilePicture', 'description')
 
+<<<<<<< HEAD
     """def save(self, commit=True):
         UProfile = super(UserProfileForm, self).save(commit=False)
         UProfile.birthday = self['birthday']
@@ -103,3 +104,19 @@ class UserProfileForm(forms.ModelForm):
         uProfile.description = self['description']
 
         return UProfile   """
+=======
+    # def save(self, commit=True):
+    #     UProfile = super(UserProfileForm, self).save(commit=False)
+    #     UProfile.birthday = self['birthday']
+    #     uProfile.city = self['city']
+    #     uProfile.state = self['state']
+    #     uProfile.favoriteVenue = self['favoriteVenue']
+    #     uProfile.favoriteArtist = self['favoriteArtist']
+    #     uProfile.profilePicture = self['profilePicture']
+    #     uProfile.description = self['description']
+
+    #     if commit:
+    #         uProfile.save()
+
+    #     return uProfile   
+>>>>>>> b2a8b0b... notes on user profile
