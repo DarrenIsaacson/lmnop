@@ -1,10 +1,9 @@
 from django import forms
 from .models import Note
-from django.contrib.auth.models import UProfile
-from django.contrib.auth.forms import UserCreationForm
 
-#Need to import UProfile class from models
+from .models import UProfile
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.forms import ValidationError
 
 
@@ -87,15 +86,15 @@ class UserRegistrationForm(UserCreationForm):
 
         return user
         
-class UserProfileForm(forms.Form):
+class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'profilePicture', 'description')
 
     def save(self, commit=True):
-        uProfile = super(UserProfileForm, self).save(commit=False)
-        uProfile.birthday = self['birthday']
+        UProfile = super(UserProfileForm, self).save(commit=False)
+        UProfile.birthday = self['birthday']
         uProfile.city = self['city']
         uProfile.state = self['state']
         uProfile.favoriteVenue = self['favoriteVenue']
@@ -104,6 +103,6 @@ class UserProfileForm(forms.Form):
         uProfile.description = self['description']
 
         if commit:
-            user.save()
+            uProfile.save()
 
         return uProfile   

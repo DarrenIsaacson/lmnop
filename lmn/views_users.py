@@ -16,8 +16,18 @@ def user_profile(request, user_pk):
 
 @login_required
 def my_user_profile(request):
-    # TODO - editable version for logged-in user to edit own profile
-    return redirect('lmn:user_profile', user_pk=request.user.pk)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            uProfile = form.save()
+            return render(request, 'lmn/users/user_profile.html', { 'user': user , 'notes': usernotes })
+        else :
+            message = 'Please check the data you entered'
+            return render(request, 'registration/register.html', {'form': form, 'message': message})
+    else :
+        form = UserProfileForm()
+        return render(request, 'registration/edit-profile.html', {'form': form})
 
 
 def register(request):

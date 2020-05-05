@@ -1,14 +1,23 @@
 {% extends 'lmn/base.html' %}
 {% block content %}
 
+<!--Add user's profile form/feilds with edit link that toggles the current info with the fields -->
+
+
 
 <!-- A user's profile page.
 
 Includes list of user's notes with title and preview of text.
 Text truncated to 200 characters. -->
+<form method='post' action="">
+	{% csrf_token %}
+	<table id="user_profile_form">
+		{{ form.as_table }}
+	</table>
+	<button type="submit">Update Profile</button>
+</form>
 
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
-
 {% for note in notes %}
 
 <div class='note' id="note_{{ note.pk }}">
