@@ -8,10 +8,15 @@
 import scrapy
 
 class Event(scrapy.Item):
-    name = scrapy.Field()
+    name   = scrapy.Field()
     artist = scrapy.Field()
-    venue = scrapy.Field()
-    url = scrapy.Field()
-    time = scrapy.Field()
-    ages = scrapy.Field()
-    date = scrapy.Field()
+    venue  = scrapy.Field()
+    url    = scrapy.Field()
+    time   = scrapy.Field()
+    ages   = scrapy.Field()
+    date   = scrapy.Field()
+
+class Venue(scrapy.Item):
+    name  = scrapy.Field()
+    city  = scrapy.Field()
+    state = scrapy.Field()
