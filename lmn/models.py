@@ -2,10 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime
 <<<<<<< HEAD
+<<<<<<< HEAD
 #import birthday
 =======
 # import birthday
 >>>>>>> b2a8b0b... notes on user profile
+=======
+
+>>>>>>> 934107d... correct url structur, no form apearing
 # Every model gets a primary key field by default.
 
 # Users, venues, shows, artists, notes
@@ -96,4 +100,4 @@ class UProfile(models.Model):
 
     def __str_(self):
         proPic_str = self.profilePicture.url if self.profilePicture else 'no photo'
-        return 'User ID = {}, Birthday = {}, City = {},\n State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.proPic_str, self.description)
+        return 'User ID = {}, Birthday = {}, City = {}, State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.proPic_str, self.description)

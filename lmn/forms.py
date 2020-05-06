@@ -92,7 +92,6 @@ class UserProfileForm(forms.ModelForm):
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'profilePicture', 'description')
 
-<<<<<<< HEAD
     """def save(self, commit=True):
         UProfile = super(UserProfileForm, self).save(commit=False)
         UProfile.birthday = self['birthday']
@@ -104,6 +103,7 @@ class UserProfileForm(forms.ModelForm):
         uProfile.description = self['description']
 
         return UProfile   """
+<<<<<<< HEAD
 =======
     # def save(self, commit=True):
     #     UProfile = super(UserProfileForm, self).save(commit=False)
@@ -120,3 +120,6 @@ class UserProfileForm(forms.ModelForm):
 
     #     return uProfile   
 >>>>>>> b2a8b0b... notes on user profile
+=======
+
+>>>>>>> 934107d... correct url structur, no form apearing

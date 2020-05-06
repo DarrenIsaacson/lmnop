@@ -20,27 +20,27 @@ def user_profile(request, user_pk):
 # View to power user editing their own profile
 # shows form 
 @login_required
-def my_user_profile(request):
+def my_user_profile(request, ):
 
-    # is there a UProfile for this user? 
-    # do DB query, if not UProfile then make one. 
-    uProfile = # either create or get from the database. 
+    uProfile = UProfile.objects.get(pk=UProfile.user)
+    user = User.objects.get(pk=user_pk)
 
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST)
-        if form.is_valid():
-            uProfile = form.save()
-            return render(request, 'lmn:user_profile', request.user.pk ) ## todo fix syntax to reverse URL with user PK
-            # return render(request, 'lmn/users/user_profile.html', { 'user': user , 'notes': usernotes })
+    if uProfile.exsists():
+        if request.method == 'POST':
+            form = UserProfileForm(request.POST)
+            if form.is_valid():
+                uProfile = form.save()
+                return render(request, 'lmn:user_profile', uProfile=UProfile.user) ## todo fix syntax to reverse URL with user PK, this needs to be able to pass to 
+            else :
+                message = 'Please check the data you entered'
+                # probably redirect to this page again as a get requet? 
+                return render(request, 'lmn:user_profile')
         else :
-            message = 'Please check the data you entered'
-            # probably redirect to this page again as a get requet? 
-            return render(request, 'lmn:user_profile')
-    else :
-        profile = UProfile.objects.get(user=request.user)
-        form = UserProfileForm(uProfile) ## figure out user profile object 
-        return render(request, 'registration/edit-profile.html', {'form': form}) # 
-
+            
+            #form = UserProfileForm(uProfile) ## figure out user profile object 
+            return render(request, 'registration/edit-profile.html', {'form': form}) # 
+    else:
+        uProfile = UProfile.objects.create(user=user)
 
 def register(request):
 
