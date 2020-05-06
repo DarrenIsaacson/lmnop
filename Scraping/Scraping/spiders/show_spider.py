@@ -30,6 +30,11 @@ class Event(scrapy.Item):
 class ShowSpider(scrapy.Spider):
     name = 'show'
     today = date.today()
+    custom_settings = {
+        'ITEM_PIPELINES' : {
+            'Scraping.pipelines.ShowPipeline': 300
+        } 
+    }
 
     start_urls = []
 
