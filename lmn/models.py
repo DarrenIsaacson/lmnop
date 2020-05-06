@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
-import birthday
+#import birthday
 # Every model gets a primary key field by default.
 
 # Users, venues, shows, artists, notes
