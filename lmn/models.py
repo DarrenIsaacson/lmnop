@@ -1,11 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
-<<<<<<< HEAD
-#import birthday
-=======
-# import birthday
->>>>>>> 6c6182c06326bd1b068caf18046f4d5053a67d0f
+
 # Every model gets a primary key field by default.
 
 # Users, venues, shows, artists, notes
@@ -88,4 +84,4 @@ class UProfile(models.Model):
 
     def __str_(self):
         proPic_str = self.profilePicture.url if self.profilePicture else 'no photo'
-        return 'User ID = {}, Birthday = {}, City = {},\n State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.proPic_str, self.description)
+        return 'User ID = {}, Birthday = {}, City = {}, State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.proPic_str, self.description)
