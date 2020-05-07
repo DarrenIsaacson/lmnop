@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Venue, Artist, Note, Show
-from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm
+from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, EditNoteForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -46,3 +46,33 @@ def notes_for_show(request, show_pk):   # pk = show pk
 def note_detail(request, note_pk):
     note = get_object_or_404(Note, pk=note_pk)
     return render(request, 'lmn/notes/note_detail.html' , { 'note': note })
+
+# Added function to edit notes 
+def edit_note(request, note_pk):
+    note = get_object_or_404(Note, pk=note_pk)
+
+    if request.method == 'POST' :
+
+        form = EditNoteForm(request.POST, instance=note)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.save()
+            return redirect('lmn:note_detail', note_pk=note.pk)  # After note is updated redirect to the note_detail page
+
+    else:
+        # New edit note form with current note details (Ex. Title, Text)
+        form = EditNoteForm(instance=note)
+
+    return render(request, 'lmn/notes/edit_note.html', { 'form': form, 'note': note })
+
+
+def delete_note(request, note_pk):
+    note = get_object_or_404(Note, pk=note_pk)
+
+    if request.method == 'POST':
+        note.delete()
+        return redirect('lmn:latest_notes')
+    context = {
+        'note': note,
+    }
+    return render(request, 'lmn/notes/delete_note.html', context)
