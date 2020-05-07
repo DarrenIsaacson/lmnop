@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
-
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
+""" Items are objects for spiders to save data into. """
 
 import scrapy
 
 class Event(scrapy.Item):
+    """ The event item stores show information from the show spider """
     name   = scrapy.Field()
     artist = scrapy.Field()
     venue  = scrapy.Field()
@@ -17,6 +13,7 @@ class Event(scrapy.Item):
     date   = scrapy.Field()
 
 class Venue(scrapy.Item):
-    name  = scrapy.Field()
-    city  = scrapy.Field()
-    state = scrapy.Field()
+    """ The venue item stores venue information from the venue spider """
+    name   = scrapy.Field()
+    city   = scrapy.Field()
+    state  = scrapy.Field()

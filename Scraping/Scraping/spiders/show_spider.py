@@ -5,7 +5,10 @@ from datetime import date
 #from ..items import Event
 all_events = []
 
+"""  This is the file for the show spider. A spider is a program that crawls a webpage and scrapes information from it.  """
+
 def add_months(num_of_months):
+    """ A helper method to find what month and year it is after adding or subtracting a given number or months from the day's date. This is used by the ShowSpider class to generate the starting URLs, which in first ave's website are based on the month and year. """
     today = date.today()
     month = today.month + num_of_months
     year = today.year
@@ -28,6 +31,7 @@ class Event(scrapy.Item):
     date = scrapy.Field()
 
 class ShowSpider(scrapy.Spider):
+     """ This spider is figures out a list of starting URLs using the add_months method, and uses them to get the name, venue, time, ages, date and URL of all shows listed on that page. """
     name = 'show'
     today = date.today()
     custom_settings = {
@@ -43,6 +47,7 @@ class ShowSpider(scrapy.Spider):
         start_urls.append('https://first-avenue.com/calendar/all/{year}-{month}'.format(year = year_month[0], month = year_month[1]))
 
     def parse(self, response):
+        """ The parse method takes the response from the spider, being the pages whole HTML, and reads through it looking for the show's information, which it saves into an event item to send to the ShowPipeline for processing. """
         # Get the page and saves it as a string.
         page = response.css('body').get()
 
@@ -58,7 +63,7 @@ class ShowSpider(scrapy.Spider):
                 yield(event)
 
 #all of this is for testing purposes. To be deleted in final code.
-print(all_events)
+"""print(all_events)
 
 process = CrawlerProcess()
 process.crawl(ShowSpider)
@@ -66,3 +71,4 @@ process.start()
 
 print()
 print(all_events[1])
+"""
