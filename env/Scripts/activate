@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Carson\Documents\School\ITEC 2905-60 Software Development Capstone\Project5\lmnop\env"
+VIRTUAL_ENV="C:\Users\darre\capstone-python\LMNOP\lmnop\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

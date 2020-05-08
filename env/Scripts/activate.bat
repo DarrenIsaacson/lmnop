@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Carson\Documents\School\ITEC 2905-60 Software Development Capstone\Project5\lmnop\env
+set VIRTUAL_ENV=C:\Users\darre\capstone-python\LMNOP\lmnop\env
 
 if not defined PROMPT set PROMPT=$P$G
 
