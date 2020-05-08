@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .models import Venue, Artist, Note, Show
+from .models import Venue, Artist, Note, Show, UProfile
 from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, UserProfileForm
 
 from django.contrib.auth.decorators import login_required
@@ -13,34 +13,45 @@ from django.contrib.auth import authenticate, login, logout
 # Otherwise - not editable 
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
+    '''loggedIn = False
+
+    if user.is_authenticated():
+        loggedIn = True
+    else:
+        return render without logged in request'''
+
+
     usernotes = Note.objects.filter(user=user.pk).order_by('-posted_date')
-    return render(request, 'lmn/users/user_profile.html', { 'user': user , 'notes': usernotes })
+    return render(request, 'lmn/users/user_profile.html', { 'user': user , 'notes': usernotes, })#'loggedIn': loggedIn
 
 
 # View to power user editing their own profile
 # shows form 
 @login_required
-def my_user_profile(request, ):
-
-    uProfile = UProfile.objects.get(pk=UProfile.user)
-    user = User.objects.get(pk=user_pk)
-
+def my_user_profile(request, user):
+    
+    #user = User.objects.get(pk=user_pk)
+    #UProfile should have been created on User create
+    #get user id from secondary key
+    uProfile = UProfile.objects.get(user=UProfile.user)
+    
     if uProfile.exsists():
-        if request.method == 'POST':
+        if request.method == 'POST': 
             form = UserProfileForm(request.POST)
             if form.is_valid():
                 uProfile = form.save()
-                return render(request, 'lmn:user_profile', uProfile=UProfile.user) ## todo fix syntax to reverse URL with user PK, this needs to be able to pass to 
+                ## I couldn't find a source for this syntax but following the other forms of rendering this seems it should be correct 
+                return render(request, 'lmn:user_profile', {'uProfile':= uProfile,}) 
             else :
                 message = 'Please check the data you entered'
                 # probably redirect to this page again as a get requet? 
                 return render(request, 'lmn:user_profile')
         else :
             
-            #form = UserProfileForm(uProfile) ## figure out user profile object 
-            return render(request, 'registration/edit-profile.html', {'form': form}) # 
-    else:
-        uProfile = UProfile.objects.create(user=user)
+            form = UserProfileForm(uProfile) ## figure out user profile object 
+            return render(request, 'registration/edit-profile.html', {'form': form, }) # 
+    else: # create a UProfile for user
+        UProfile.create_user_profile(user.user_pk)
 
 def register(request):
 
@@ -49,6 +60,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             user = authenticate(username=request.POST['username'], password=request.POST['password1'])
+            UProfile.create_user_profile(user.user_pk) #call create user profile in models.py?
             login(request, user)
             return redirect('lmn:homepage')
 
