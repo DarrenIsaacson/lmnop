@@ -1,4 +1,8 @@
 *.pyc
+*~
+/.vscode
 __pycache__
-venv
-lmnop.sqlite
+myvenv
+db.sqlite3
+/static
+.DS_Store
