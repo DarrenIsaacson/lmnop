@@ -76,3 +76,19 @@ def delete_note(request, note_pk):
         'note': note,
     }
     return render(request, 'lmn/notes/delete_note.html', context)
+
+
+def top_shows(request):
+    shows = list(Show.objects.all())
+    show_dict = {}
+    num_of_shows_dict = {}
+    for show in shows:
+        num_of_notes = Note.objects.filter(show_id=show.id).count()
+        num_of_shows_dict[show] = num_of_notes
+    
+    num_of_shows_dict = sorted(num_of_shows_dict.items(), key=lambda item: item[1], reverse=True)
+    for show in num_of_shows_dict:
+        notes = list(Note.objects.filter(show_id=show[0].id))
+        show_dict[show[0]] = notes
+
+    return render(request, 'lmn/notes/top_shows.html', { 'shows': show_dict })
