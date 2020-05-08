@@ -8,14 +8,19 @@
   <h2>Latest Notes</h2>
 {% endif %}
 
+<hr>
 
 {% for note in notes %}
 
 <div id="note_{{ note.pk }}">
-  <h3 class="note_title">{{ note.title }}</h3>
-  <p class="show_info"><a href="{% url 'lmn:notes_for_show' show_pk=note.show.pk %}">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</a></p>
-  <P class="note_info">Posted on {{ note.posted_date }} by <a class='user' href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a></p>
-  <p class='note_text'>{{ note.text|truncatechars:100 }}</p>
+
+  {% if not show %}  <!-- If the page is show specific it will not show link to show -->
+    <p class="show_info"><a href="{% url 'lmn:notes_for_show' show_pk=note.show.pk %}">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</a></p>
+  {% endif %}
+  <h3 style="margin-left: 20px" class="note_title">{{ note.title }}</h3>
+  <p style="margin-left: 20px" class='note_text'><i>{{ note.text|truncatechars:100 }}</i></p>
+  <P style="margin-left: 20px" class="note_info">Posted on {{ note.posted_date }} by <a class='user' href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a></p>
+  
   
   <!-- 
       If the note was created by the logged in user, an edit note button
@@ -23,18 +28,16 @@
    -->
   {% if note.user.username == user.username %}
 
-    <p><form action="{% url 'lmn:edit_note' note_pk=note.pk %}">
-      <input id="edit_note" type='submit' value='Edit Note'>
-    </form>
-    <form action="{%url 'lmn:delete_note' note_pk=note.pk %}">
-      <input id="delete_note" type='submit' value='Delete Note'>
-    </form>
-  </p>
+  <form action="{% url 'lmn:edit_note' note_pk=note.pk %}">
+    <input id="edit_note" type='submit' value='Edit Note'>
+  </form>
+  <form action="{%url 'lmn:delete_note' note_pk=note.pk %}">
+    <input id="delete_note" type='submit' value='Delete Note'>
+  </form>
 
   {% endif %}
 
   <hr>
-
 
 {% empty %}
 
