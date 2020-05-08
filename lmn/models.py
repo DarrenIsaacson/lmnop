@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save #https://stackoverflow.com/questions/11488974/django-create-user-profile-on-user-creation
 from django.contrib.auth.models import User
 import datetime
 
@@ -71,6 +72,11 @@ class UProfile(models.Model):
     profilePicture = models.ImageField(upload_to='userProfile_image/', blank=True, null=True)
     description = models.TextField(max_length=3000, blank=True, null=True)
 
+
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            UProfile.objects.create(user=instance)
+    post_save.connect(create_user_profile, sender=User)
     '''#scripts to add, update, pull, & delete from the profile
     def updateUserProfile():
 
