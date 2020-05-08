@@ -2,7 +2,7 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 import re
 from datetime import date
-#from ..items import Event
+from ..items import Event
 all_events = []
 
 """  This is the file for the show spider. A spider is a program that crawls a webpage and scrapes information from it.  """
@@ -20,18 +20,8 @@ def add_months(num_of_months):
 
     return [int(year), int(month)]
 
-class Event(scrapy.Item):
-    # this will be in items.py in final, but for testing purposes I was having trouble importing it so I just pasted it here.
-    name = scrapy.Field()
-    artist = scrapy.Field()
-    venue = scrapy.Field()
-    url = scrapy.Field()
-    time = scrapy.Field()
-    ages = scrapy.Field()
-    date = scrapy.Field()
-
 class ShowSpider(scrapy.Spider):
-     """ This spider is figures out a list of starting URLs using the add_months method, and uses them to get the name, venue, time, ages, date and URL of all shows listed on that page. """
+    """ This spider is figures out a list of starting URLs using the add_months method, and uses them to get the name, venue, time, ages, date and URL of all shows listed on that page. """
     name = 'show'
     today = date.today()
     custom_settings = {
@@ -62,7 +52,7 @@ class ShowSpider(scrapy.Spider):
                 event = Event(url = 'https://first-avenue.com' + match[0], name = match[1], venue = match[2], time = match[3], ages = match[4], date = date[0])
                 yield(event)
 
-#all of this is for testing purposes. To be deleted in final code.
+# all of this is for testing purposes. To be deleted in final code.
 """print(all_events)
 
 process = CrawlerProcess()
