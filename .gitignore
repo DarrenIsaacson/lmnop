@@ -2,7 +2,12 @@
 *~
 /.vscode
 __pycache__
+<<<<<<< HEAD
 myvenv
 db.sqlite3
 /static
 .DS_Store
+=======
+venv
+lmnop.sqlite
+>>>>>>> 4bbf0ce... User Profile Object is now being created
