@@ -64,19 +64,20 @@ class Note(models.Model):
 #user profile table
 class UProfile(models.Model):
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
-    birthday = models.DateTimeField(blank=False) #found from https://pypi.org/project/django-birthday/
-    city = models.CharField(max_length=200, blank=True, null=True)
-    state = models.CharField(max_length=2, blank=False, null=False)
+    birthday = models.CharField(max_length=8, blank=False, null=True) #found from https://pypi.org/project/django-birthday/
+    city = models.CharField(max_length=200, blank=True, null=True)#blank is for form validation
+    state = models.CharField(max_length=2, blank=True, null=True)#change this to true to allow null feilds
     favoriteVenue = models.CharField(max_length=200, blank=True, null=True)
     favoriteArtist = models.CharField(max_length=200, blank=True, null=True)
     profilePicture = models.ImageField(upload_to='userProfile_image/', blank=True, null=True)
     description = models.TextField(max_length=3000, blank=True, null=True)
 
 
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            UProfile.objects.create(user=instance)
-    post_save.connect(create_user_profile, sender=User)
+    #def create_user_profile(self, instance):
+     #   if created:
+        #UProfile.objects.create(user=instance)
+
+    #post_save.connect(create_user_profile, sender=User)
     '''#scripts to add, update, pull, & delete from the profile
     def updateUserProfile():
 

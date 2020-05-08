@@ -28,30 +28,31 @@ def user_profile(request, user_pk):
 # View to power user editing their own profile
 # shows form 
 @login_required
-def my_user_profile(request, user):
+def my_user_profile(request, user_pk):
     
     #user = User.objects.get(pk=user_pk)
     #UProfile should have been created on User create
     #get user id from secondary key
-    uProfile = UProfile.objects.get(user=UProfile.user)
+    #add try/catch
+    uProfile = UProfile.objects.get(user=user_pk)
     
-    if uProfile.exsists():
+    if UProfile.objects.filter(user = user_pk).exists(): #https://stackoverflow.com/questions/11714536/check-if-an-object-exists
         if request.method == 'POST': 
             form = UserProfileForm(request.POST)
             if form.is_valid():
                 uProfile = form.save()
                 ## I couldn't find a source for this syntax but following the other forms of rendering this seems it should be correct 
-                return render(request, 'lmn:user_profile', {'uProfile':= uProfile,}) 
+                return render(request, 'lmn:user_profile', {'uProfile': uProfile,}) 
             else :
                 message = 'Please check the data you entered'
                 # probably redirect to this page again as a get requet? 
                 return render(request, 'lmn:user_profile')
         else :
             
-            form = UserProfileForm(uProfile) ## figure out user profile object 
-            return render(request, 'registration/edit-profile.html', {'form': form, }) # 
+            form = UserProfileForm() ## figure out user profile object 
+            return render(request, 'registration/edit-profile.html', {'form': form }) # 
     else: # create a UProfile for user
-        UProfile.create_user_profile(user.user_pk)
+        UProfile.objects.create(user=user, birthday='', city='', state='', favoriteVenue='', favoriteArtist='', profilePicture='', description='')
 
 def register(request):
 
@@ -60,7 +61,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             user = authenticate(username=request.POST['username'], password=request.POST['password1'])
-            UProfile.create_user_profile(user.user_pk) #call create user profile in models.py?
+            UProfile.objects.create(user=user, birthday='', city='', state='', favoriteVenue='', favoriteArtist='', profilePicture='', description='') 
             login(request, user)
             return redirect('lmn:homepage')
 
