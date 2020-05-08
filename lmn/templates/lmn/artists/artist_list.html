@@ -28,4 +28,9 @@
 <P>No artists found</P>
 {% endfor %}
 
+{% if artists.paginator.num_pages > 1 %}
+    {% include 'lmn/_pagination.html' with items=artists %}
+{% endif %}
+
+
 {% endblock %}

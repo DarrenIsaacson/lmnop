@@ -35,4 +35,8 @@ display button to add new note for that show. -->
 
 {% endif %}
 
+{% if notes.paginator.num_pages > 1 %}
+    {% include 'lmn/_pagination.html' with items=notes %}
+{% endif %}
+
 {% endblock %}
