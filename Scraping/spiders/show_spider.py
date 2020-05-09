@@ -2,8 +2,7 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 import re
 from datetime import date
-from ..items import Event
-all_events = []
+from Scraping.items import Event
 
 """  This is the file for the show spider. A spider is a program that crawls a webpage and scrapes information from it.  """
 
@@ -32,7 +31,7 @@ class ShowSpider(scrapy.Spider):
 
     start_urls = []
 
-    for x in range(-3, 4): # This range determines how many months into the past and future you are going to scrape.
+    for x in range(1, 2): # This range determines how many months into the past and future you are going to scrape.
         year_month = add_months(x)
         start_urls.append('https://first-avenue.com/calendar/all/{year}-{month}'.format(year = year_month[0], month = year_month[1]))
 
@@ -40,16 +39,18 @@ class ShowSpider(scrapy.Spider):
         """ The parse method takes the response from the spider, being the pages whole HTML, and reads through it looking for the show's information, which it saves into an event item to send to the ShowPipeline for processing. """
         # Get the page and saves it as a string.
         page = response.css('body').get()
-
+        print('print test')
         # Uses a regex statement to get all the dates
-        dates = re.findall("<h3><div class=\"date-repeat-instance\"><span class=\"date-display-single\">([^<]+)([\s\S]+?)</article><!-- /.node -->", page)
+        dates = re.findall("<h3><div class=\"date-repeat-instance\"><span class=\"date-display-single\"[^>]+>([^<]+)([\s\S]+?)</article><!-- /.node -->", page)
         for date in dates:
             # Uses a regex statement to get all the shows on each date.
-            matches = re.findall("\"field-item even\"><a href=\"(/event[^\"]+)\">([^<]+)[\s\S]+?a href=\"/venue[^\"]+\">([^<]+)[\s\S]+?\"date-display-single\">([^<]+)[\s\S]+?even\">([^<]+)", date[1])
-        
+            matches = re.findall("\"field-item even\"><a href=\"(/event[^\"]+)\">([^<]+)[\s\S]+?a href=\"/venue[^\"]+\">([^<]+)[\s\S]+?\"date-display-single[^>]+>([^<]+)[\s\S]+?even\">([^<]+)", date[1])
+            print('date get')
+
             # Saves the show data into all_events
             for match in matches:
-                event = Event(url = 'https://first-avenue.com' + match[0], name = match[1], venue = match[2], time = match[3], ages = match[4], date = date[0])
+                event = Event(url = 'https://first-avenue.com' + match[0], name = match[1], artist = match[1], venue = match[2], time = match[3], ages = match[4], date = date[0])
+                print('event get')
                 yield(event)
 
 # all of this is for testing purposes. To be deleted in final code.
