@@ -42,14 +42,14 @@ def my_user_profile(request, user_pk):
             if form.is_valid():
                 uProfile = form.save()
                 ## I couldn't find a source for this syntax but following the other forms of rendering this seems it should be correct 
-                return render(request, 'lmn:user_profile', {'uProfile': uProfile,}) 
+                return render(request, 'lmn:user_profile', {'uProfile': uProfile}) 
             else :
                 message = 'Please check the data you entered'
                 # probably redirect to this page again as a get requet? 
-                return render(request, 'lmn:user_profile')
+                return render(request, 'registration/edit-profile.html', {'form': form})
         else :
             
-            form = UserProfileForm() ## figure out user profile object 
+            form = UserProfileForm(UProfile.objects.filter(user=user_pk)) ## figure out user profile object 
             return render(request, 'registration/edit-profile.html', {'form': form }) # 
     else: # create a UProfile for user
         UProfile.objects.create(user=user, birthday='', city='', state='', favoriteVenue='', favoriteArtist='', profilePicture='', description='')
