@@ -8,8 +8,6 @@ from datetime import date
 class VenueSpider(scrapy.Spider):
     """ This spider is given the URL of a show, and uses it to get the name and URL of the show's venue. It then goes to the venue's URL and get's the venue's location. """
     name = 'venue'
-    today = date.today()
-    #allowed_domains = 'https://first-avenue.com/'
     custom_settings = {
         'ITEM_PIPELINES' : {
             'Scraping.pipelines.VenuePipeline': 200
@@ -29,13 +27,12 @@ class VenueSpider(scrapy.Spider):
         venue_url = match[1]
 
         print('TEST:' + venue_url)
-        yield scrapy.Request('https://first-avenue.com' + venue_url, callback=self.parse_venue_page, method="GET")
+        yield scrapy.Request(url='https://first-avenue.com' + venue_url, callback=self.parse_venue, method="GET", priority=1)
 
-    def parse_venue_page(self, response):
-        venue_page = response.css('body').get()
-
+    def parse_venue(self, response):
         print('TEST!!!')
-
+        
+        venue_page = response.css('body').get()
         match = re.search("id=\"page-title\">([^<]+)[\s\S]+?\"locality\">([^<]+)[^>]+>[^>]+>([^<]+)", venue_page)
         venue_name = match[1]
         venue_city = match[2]
