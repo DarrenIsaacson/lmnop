@@ -18,11 +18,19 @@ Text truncated to 200 characters. -->
   <p class="note_posted_at">{{ note.posted_date}}</p>
 </div>
 
+
 {% empty %}
 
     <p id='no_records'>No notes.</p>
 
 {% endfor %}
+
+<!-- Iterating through num of pages as long as there is more than 1 pages -->
+{% if notes.paginator.num_pages > 1 %}
+    <!-- Pagination pager will appear -->
+    {% include 'lmn/_pagination.html' with items=notes %}
+{% endif %}
+
 
 
 {% endblock %}
