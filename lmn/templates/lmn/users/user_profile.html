@@ -16,10 +16,21 @@ Text truncated to 200 characters. -->
 
 -->
 
+<h1 id='username'>{{ user.username }}</h1>
+{% if uprofile %}
+<div class='uprofile' id="uprofile_{{ uprofile.pk }}">
+	<img src="" height="450" width="350" alt="{{uprofile.user.username}}">
+	<p class="user_name">Name: {{uprofile.user.first_name}}</p>
+	<p class="user_email">Email: <a href="mailto:{{uprofile.user.email}}">{{uprofile.user.email}}</a></p>
+	<p class="uprofile_birthday">Birthday: {{uprofile.birthday}}</p>
+	<p class="uprofile_city">City: {{uprofile.city}}</p>
+	<p class="uprofile_state">State: {{uprofile.state}}</p>
+	<p class="uprofile_favoriteVenue">Favorite Venue: {{uprofile.favoriteVenue}}</p>
+	<p class="uprofile_description">About Me: {{uprofile.description}}</p>
 
+</div>
+{% else %}
 
-
-<a href="{% url 'lmn:my_user_profile' user_pk=user.pk %}">Edit profile</a>
 
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
 {% for note in notes %}

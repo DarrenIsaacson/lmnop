@@ -79,14 +79,14 @@ class Note(models.Model):
 
 #user profile table
 class UProfile(models.Model):
-    user = models.ForeignKey('auth.User', blank=False, null=True, on_delete=models.CASCADE)
-    birthday = models.CharField(max_length=8, blank=False, null=True) #found from https://pypi.org/project/django-birthday/
-    city = models.CharField(max_length=200, blank=True, null=True)#blank is for form validation
-    state = models.CharField(max_length=2, blank=True, null=True)#change this to true to allow null feilds
-    favoriteVenue = models.CharField(max_length=200, blank=True, null=True)
-    favoriteArtist = models.CharField(max_length=200, blank=True, null=True)
-    profilePicture = models.ImageField(upload_to='userProfile_image/', blank=True, null=True)
-    description = models.TextField(max_length=3000, blank=True, null=True)
+    user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
+    birthday = models.CharField(max_length=8, blank=False) #blank is for form validation
+    city = models.CharField(max_length=200, blank=False)
+    state = models.CharField(max_length=2, blank=False)#change this to true to allow null feilds
+    favoriteVenue = models.CharField(max_length=200, blank=False)
+    favoriteArtist = models.CharField(max_length=200, blank=False)
+    photo = models.ImageField(upload_to='userProfile_image/', blank=True, null=True)
+    description = models.TextField(max_length=3000, blank=False)
 
 
     #def create_user_profile(self, instance):
@@ -106,5 +106,5 @@ class UProfile(models.Model):
 
 
     def __str_(self):
-        proPic_str = self.profilePicture.url if self.profilePicture else 'no photo'
-        return 'User ID = {}, Birthday = {}, City = {}, State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.proPic_str, self.description)
+        photo_str = self.photo.url if self.photo else 'no photo'
+        return 'User ID = {}, Birthday = {}, City = {}, State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.photo_str, self.description)
