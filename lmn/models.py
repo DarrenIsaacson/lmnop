@@ -63,7 +63,7 @@ class Note(models.Model):
 
 #user profile table
 class UProfile(models.Model):
-    user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', blank=False, null=True, on_delete=models.CASCADE)
     birthday = models.CharField(max_length=8, blank=False, null=True) #found from https://pypi.org/project/django-birthday/
     city = models.CharField(max_length=200, blank=True, null=True)#blank is for form validation
     state = models.CharField(max_length=2, blank=True, null=True)#change this to true to allow null feilds
