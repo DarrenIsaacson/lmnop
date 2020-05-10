@@ -2,7 +2,8 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 import re
 from datetime import date
-from Scraping.items import Event
+import Scraping.items
+from lmn.models import Show, Venue, Artist
 
 """  This is the file for the show spider. A spider is a program that crawls a webpage and scrapes information from it.  """
 
@@ -39,23 +40,53 @@ class ShowSpider(scrapy.Spider):
         """ The parse method takes the response from the spider, being the pages whole HTML, and reads through it looking for the show's information, which it saves into an event item to send to the ShowPipeline for processing. """
         # Get the page and saves it as a string.
         page = response.css('body').get()
-        # Uses a regex statement to get all the dates
-        dates = re.findall("<h3><div class=\"date-repeat-instance\"><span class=\"date-display-single\"[^>]+>([^<]+)([\s\S]+?)</article><!-- /.node -->", page)
-        for date in dates:
-            # Uses a regex statement to get all the shows on each date.
-            matches = re.findall("\"field-item even\"><a href=\"(/event[^\"]+)\">([^<]+)[\s\S]+?a href=\"/venue[^\"]+\">([^<]+)[\s\S]+?\"date-display-single[^>]+>([^<]+)[\s\S]+?even\">([^<]+)", date[1])
-            # Saves the show data into all_events
-            for match in matches:
-                event = Event(url = 'https://first-avenue.com' + match[0], name = match[1], artist = match[1], venue = match[2], time = match[3], ages = match[4], date = date[0])
-                yield(event)
+        
+        matches = re.findall("\"field-item even\"><a href=\"(/event[^\"]+)\">([^<]+)[\s\S]+?a href=\"/venue[^\"]+[^>]+>([^<]+)[\s\S]+?\"date-display-single[^>]+>([^<]+)[\s\S]+?even\">([^<]+)", page)
+        print('TEST')
+        for match in matches:
+            event = Scraping.items.Event(url = 'https://first-avenue.com' + match[0], name = match[1], venue = match[2], time = match[3], ages = match[4], date = 'filler')
 
-# all of this is for testing purposes. To be deleted in final code.
-"""print(all_events)
+            if event['venue'] == '7th St Entry' or event['venue'] == 'Mainroom':
+                event['venue'] = 'First Avenue'
+            if not Venue.objects.filter(name = event['venue']).exists():
+                yield scrapy.Request(url=event['url'], callback=self.parse_venue_1, method="GET", priority=1)
 
-process = CrawlerProcess()
-process.crawl(ShowSpider)
-process.start()
+            request = scrapy.Request(url=event['url'], callback=self.parse_artist, method="GET", priority=1, cb_kwargs=dict(main_url=response.url))
+            request.cb_kwargs['event'] = event
+            yield request
 
-print()
-print(all_events[1])
-"""
+
+    def parse_venue_1(self, response):
+        """ The parse method takes the response from the spider, being the pages whole HTML, and reads through it looking for the venue's name and URL. From that URL it gets a new response which it looks through for the city and state of the venue which it saves into a venue item to send to the ShowPipeline for processing. """
+        page = response.css('body').get()
+
+        match = re.search("Venue:[\s\S]+?a href=\"([^\"]+)", page)
+        venue_url = match[1]
+
+        yield scrapy.Request(url='https://first-avenue.com' + venue_url, callback=self.parse_venue_2, method="GET", priority=1)
+
+    def parse_venue_2(self, response):
+        venue_page = response.css('body').get()
+        match = re.search("id=\"page-title\">([^<]+)[\s\S]+?\"locality\">([^<]+)[^>]+>[^>]+>([^<]+)", venue_page)
+        venue_name = match[1].strip()
+        venue_city = match[2].strip()
+        venue_state = match[3].strip()
+
+        venue = Scraping.items.Venue(name=venue_name, city=venue_city, state=venue_state)
+        yield(venue)
+
+    def parse_artist(self, response, main_url, event):
+
+        page = response.css('body').get()
+
+        match = re.search("\"performers\">([^<]+)[\s\S]+?datepart\">([^<]+)", page)
+        if match:
+            name = match[1].strip()
+            date = match[2].strip()
+        else:
+            match = re.search("datepart\">([^<]+)[\s\S]+?Presented by:[\d\D]+?>([^<]+)", page)
+            name = match[2].strip()
+            date = match[1].strip()
+        event['artist'] = name
+        event['date']   = date
+        yield event

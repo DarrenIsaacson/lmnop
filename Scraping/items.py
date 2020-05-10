@@ -17,3 +17,7 @@ class Venue(scrapy.Item):
     name   = scrapy.Field()
     city   = scrapy.Field()
     state  = scrapy.Field()
+
+class Artist(scrapy.Item):
+
+    name   = scrapy.Field()
