@@ -31,6 +31,7 @@ def artist_list(request):
     else:
         artists = Artist.objects.all().order_by('name')
 
+    ''' Pagnation happens here '''
     paginator = Paginator(artists, 10) # Variable that takes in 2 arguments Paginator(Post items, how many items)
 
     # Variable that uses the http request.GET.get to gather the page number that will be passed to the view.

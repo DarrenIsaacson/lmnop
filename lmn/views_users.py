@@ -14,7 +14,7 @@ def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
     usernotes = Note.objects.filter(user=user.pk).order_by('-posted_date')
     
-    paginator = Paginator(usernotes, 5)# Variable that takes in 2 arguments Paginator(Post items, how many items)
+    paginator = Paginator(usernotes, 10)# Variable that takes in 2 arguments Paginator(Post items, how many items)
 
     # Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
     page_number = request.GET.get('page')
