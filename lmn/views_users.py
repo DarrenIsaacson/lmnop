@@ -25,18 +25,17 @@ def user_profile(request, user_pk):
 @login_required
 def my_user_profile(request, user_pk):
     
-    #add try/catch
     uProfile = get_object_or_404(UProfile, pk=user_pk)
-    
+
     if UProfile.objects.filter(pk = user_pk).exists(): #https://stackoverflow.com/questions/11714536/check-if-an-object-exists
         if request.method == 'POST': 
             form = UserProfileForm(request.POST)
             if form.is_valid():
                 uProfile = form.save(commit=False)
-                uProfile.user_id = UProfile.objects.get(user_id=user_pk) #dont use request
-                uProfile.save()
+                uProfile.user_id = uProfile.pk
+                uProfile.save()                
                 #uProfile = UProfile.objects.get(pk=user_pk)
-                return redirect('lmn:user_profile', uProfile.user_id) 
+                return redirect('lmn:user_profile', uProfile.pk) 
             else :
                 message = 'Please check the data you entered'
                 # probably redirect to this page again as a get requet? 
