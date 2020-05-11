@@ -32,10 +32,11 @@ def my_user_profile(request, user_pk):
             form = UserProfileForm(request.POST)
             if form.is_valid():
                 uProfile = form.save(commit=False)
-                uProfile.user_id = uProfile.pk
+                #uProfile.user_id = uProfile.pk
+                uProfile.user = request.user
                 uProfile.save()                
                 #uProfile = UProfile.objects.get(pk=user_pk)
-                return redirect('lmn:user_profile', uProfile.pk) 
+                return redirect('lmn:user_profile', request.user.pk) 
             else :
                 message = 'Please check the data you entered'
                 # probably redirect to this page again as a get requet? 
