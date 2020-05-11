@@ -33,7 +33,7 @@ def my_user_profile(request, user_pk):
             if form.is_valid():
                 uProfile = form.save(commit=False)
                 #uProfile.user_id = uProfile.pk
-                uProfile.user = request.user
+                uProfile.user_id = request.user           
                 uProfile.save()                
                 #uProfile = UProfile.objects.get(pk=user_pk)
                 return redirect('lmn:user_profile', request.user.pk) 
