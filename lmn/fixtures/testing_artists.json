@@ -7,5 +7,30 @@
   },
   {"model" : "lmn.artist", "pk" : 3 , "fields" :
     { "name" : "Yes"}
+  },
+  {"model" : "lmn.artist", "pk" : 4 , "fields" :
+    { "name" : "Go"}
+  },
+  {"model" : "lmn.artist", "pk" : 5 , "fields" :
+    { "name" : "MJ"}
   }
+  {"model" : "lmn.artist", "pk" : 6 , "fields" :
+    { "name" : "Breaking"}
+  },
+  {"model" : "lmn.artist", "pk" : 7 , "fields" :
+    { "name" : "Parapa"}
+  },
+  {"model" : "lmn.artist", "pk" : 8 , "fields" :
+    { "name" : "Canada"}
+  },
+  {"model" : "lmn.artist", "pk" : 9 , "fields" :
+    { "name" : "Cheezeit"}
+  },
+  {"model" : "lmn.artist", "pk" : 10 , "fields" :
+    { "name" : "Glass bottle"}
+  },
+  {"model" : "lmn.artist", "pk" : 11 , "fields" :
+    { "name" : "Nintendo"}
+  },
+
 ]
