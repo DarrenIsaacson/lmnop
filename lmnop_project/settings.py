@@ -24,9 +24,16 @@ SECRET_KEY = '8c01$#j44g3znb)$q0()8)!%ts-jc)k12!a75-!63qb%bj=d4k'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = True
+if os.getenv('GAE_INSTANCE'):
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+
+if os.getenv('GAE_INSTANCE'):
+    ALLOWED_HOSTS = ['lmnop-271010.appspot.com']
+else:
+    ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -82,8 +89,8 @@ DATABASES = {
         'USER': 'lmnop',
         'PASSWORD': os.environ['LMNOP_DB_PW'],
         'HOST': '/cloudsql/lmnop-271010:us-central1:lmnop',
-        'PORT': '5432'
-    }
+        'PORT': '5432',
+    },
 }
 
 if not os.getenv('GAE_INSTANCE'):
