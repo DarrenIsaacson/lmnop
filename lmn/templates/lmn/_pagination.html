@@ -1,19 +1,6 @@
 <!-- Reusable template for pagination -->
 
 <div class="pagination">
-<<<<<<< HEAD
-  {% if items.has_previous %}
-    <a href="?page=1"><<</a>
-    <a href="?page={{ items.previous_page_number }}"><</a>
-    
-  {% endif %}
-  <span>{{ items.number }}</span><span>of</span><span>{{ items.paginator.num_pages }}</span>
-  {% if items.has_next %}
-    <a href="?page={{ items.next_page_number }}">></a>
-    <a href="?page={{ items.paginator.num_pages }}">>></a>
-  {% endif %}
-</div>
-=======
     {% if items.has_previous %}
       <a href="?page=1"><<</a>
       <a href="?page={{ items.previous_page_number }}"><</a>
@@ -25,4 +12,3 @@
       <a href="?page={{ items.paginator.num_pages }}">>></a>
     {% endif %}
   </div>
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a

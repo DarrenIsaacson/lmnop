@@ -1,15 +1,4 @@
 body {
-<<<<<<< HEAD
-  font-family: monospace;
-  background: #394343;
-  color: antiquewhite;
-}
-
-a {
-  color: lightcoral;
-}
-
-=======
   background-color: #A9DFBF;
   font-family: monospace;
   color: #D2691E!important;
@@ -52,7 +41,6 @@ button {
 .fileClear input.clear {
   position: relative;
 }
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 #welcome_user_msg, #login_or_sign_up {
   position: absolute;
   right: 0px;

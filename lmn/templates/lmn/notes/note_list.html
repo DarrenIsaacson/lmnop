@@ -14,30 +14,6 @@
 
 <div id="note_{{ note.pk }}">
 
-<<<<<<< HEAD
-  {% if not show %}  <!-- If the page is show specific it will not show link to show -->
-    <p class="show_info"><a href="{% url 'lmn:notes_for_show' show_pk=note.show.pk %}">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</a></p>
-  {% endif %}
-  <h3 style="margin-left: 20px" class="note_title">{{ note.title }}</h3>
-  <p style="margin-left: 20px" class='note_text'><i>{{ note.text|truncatechars:100 }}</i></p>
-  <P style="margin-left: 20px" class="note_info">Posted on {{ note.posted_date }} by <a class='user' href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a></p>
-  
-  
-  <!-- 
-      If the note was created by the logged in user, an edit note button
-      and a delete note button will appear underneath the note
-   -->
-  {% if note.user.username == user.username %}
-
-  <form action="{% url 'lmn:edit_note' note_pk=note.pk %}">
-    <input id="edit_note" type='submit' value='Edit Note'>
-  </form>
-  <form action="{%url 'lmn:delete_note' note_pk=note.pk %}">
-    <input id="delete_note" type='submit' value='Delete Note'>
-  </form>
-
-  {% endif %}
-=======
   {% if not show %}  <!-- If the page is show specific it will not show link to the show -->
     <p class="show_info"><a href="{% url 'lmn:notes_for_show' show_pk=note.show.pk %}">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</a></p>
   {% endif %}
@@ -49,7 +25,6 @@
     <p style="margin-left: 20px" class='note_photo_label'>No Photo Uploaded</p>
   {% endif %}
   <P style="margin-left: 20px" class="note_info">Posted on {{ note.posted_date }} by <a class='user' href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a></p>
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
   <hr>
 
@@ -65,24 +40,13 @@ display button to add new note for that show. -->
 {% if show %}
 
 <form action="{% url 'lmn:new_note' show_pk=show.pk %}">
-<<<<<<< HEAD
-  <input id="add_note" type='submit' value='Add your own notes'>
-=======
   <button id="add_note" type='submit'>Add your own notes</button>
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 </form>
 
 {% endif %}
 
-<<<<<<< HEAD
-<!-- Iterating through num of pages as long as there is more than 1 pages -->
-{% if notes.paginator.num_pages > 1 %}
-    <!-- Pagination pager will appear -->
-    {% include 'lmn/_pagination.html' with items=notes %}
-=======
 {% if notes.paginator.num_pages > 1 %}
   {% include 'lmn/_pagination.html' with items=notes %}
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 {% endif %}
 
 {% endblock %}

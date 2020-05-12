@@ -15,10 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -26,18 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8c01$#j44g3znb)$q0()8)!%ts-jc)k12!a75-!63qb%bj=d4k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-<<<<<<< HEAD
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-=======
 
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 # Application definition
 
@@ -61,10 +50,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 ROOT_URLCONF = 'lmnop_project.urls'
 
 TEMPLATES = [
@@ -85,33 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lmnop_project.wsgi.application'
 
-<<<<<<< HEAD
-
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-
-# Uncomment this when you are ready to use Postgres.
-
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'lmnop',
-    #     'USER' : 'lmnop',
-    #     'PASSWORD' : os.environ['LMNOP_DB_PW'],
-    #     'HOST' : 'localhost',
-    #     'PORT' : '5432',
-    # },
-
-    # When you use Postgres, comment out or remove this DB config. 
-    
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lmnop.sqlite',
-    }
-}
-
-=======
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -146,7 +104,6 @@ else:
         }
     }
     
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -166,10 +123,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -183,29 +136,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-<<<<<<< HEAD
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-=======
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 # STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 # Where to send user after successful login if no other page is provided.
 # Should provide the user object.
 LOGIN_REDIRECT_URL = 'lmn:my_user_profile'
 ''' Commented out so the logout process usess the URL on lmn/urls.py,
 LOGOUT_REDIRECT_URL = 'lmn:homepage'
-<<<<<<< HEAD
-'''
-=======
 '''
 
 # MEDIA_URL = '/media/'
@@ -227,4 +168,3 @@ if os.getenv('GAE_INSTANCE'):
 else:
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
