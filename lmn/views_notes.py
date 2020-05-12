@@ -9,7 +9,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
 
-
+# Imported Paginator from Django Library
+from django.core.paginator import Paginator
 
 @login_required
 def new_note(request, show_pk):
@@ -35,6 +36,16 @@ def new_note(request, show_pk):
 
 def latest_notes(request):
     notes = Note.objects.all().order_by('-posted_date')
+
+    ''' Pagnation happens here '''
+    paginator = Paginator(notes, 10) # Variable that takes in 2 arguments Paginator(Post items, how many items)
+
+    # Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
+    page_number = request.GET.get('page') 
+
+    # Access the page by using the paginator method to get the corrisponding page. The notes variable will only contain 10 notes at a time
+    notes = paginator.get_page(page_number)
+
     return render(request, 'lmn/notes/note_list.html', { 'notes': notes })
 
 

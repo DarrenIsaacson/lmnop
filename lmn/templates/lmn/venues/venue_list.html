@@ -38,4 +38,8 @@
 
 </div>
 
+{% if venues.paginator.num_pages > 1 %}
+  {% include 'lmn/_pagination.html' with items=venues %}
+{% endif %}
+
 {% endblock %}
