@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views, views_artists, views_venues, views_notes, views_users
 
-
 from django.contrib.auth import views as auth_views
 
 
@@ -21,7 +20,9 @@ urlpatterns = [
     path('notes/detail/<int:note_pk>/', views_notes.note_detail, name='note_detail'),
     path('notes/for_show/<int:show_pk>/', views_notes.notes_for_show, name='notes_for_show'),
     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
-
+    path('notes/edit/<int:note_pk>/', views_notes.edit_note, name='edit_note'),  # Added for editing notes
+    path('notes/delete/<int:note_pk>/', views_notes.delete_note, name='delete_note'),  # Added for deleting notes
+    path('notes/top_shows/', views_notes.top_shows, name='top_shows'),
 
     # Artist related
     path('artists/list/', views_artists.artist_list, name='artist_list'),
@@ -34,7 +35,7 @@ urlpatterns = [
 
     # Account related
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout_view'),
     path('register/', views_users.register, name='register'),
 
 ]

@@ -37,3 +37,9 @@ def register(request):
     else:
         form = UserRegistrationForm()
         return render(request, 'registration/register.html', { 'form': form } )
+
+def logout_view(request):
+    #checks if user just logged out https://stackoverflow.com/questions/11393929/django-message-when-logout
+    request.session['just_logged_out'] = True
+    logout(request)
+    return redirect('lmn:homepage', request)
