@@ -10,15 +10,21 @@ import datetime
 
 # User is provided by Django. The email field is not unique by
 # default, so add this to prevent more than one user with the same email.
-User._meta.get_field('email')._unique = True
-User._meta.get_field('username')._unique = True
+# User._meta.get_field('email')._unique = True
+# User._meta.get_field('username')._unique = True
 
 
 # Require email, first name and last name
-User._meta.get_field('email')._blank = False
-User._meta.get_field('last_name')._blank = False
-User._meta.get_field('first_name')._blank = False
+# User._meta.get_field('email')._blank = False
+# User._meta.get_field('last_name')._blank = False
+# User._meta.get_field('first_name')._blank = False
 
+User.email._unique = True
+User.username.unique = True
+
+User.email.blank = False
+User.first_name.blank = False
+User.last_name.blank = False
 
 
 ''' A music artist '''

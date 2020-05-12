@@ -73,26 +73,37 @@ WSGI_APPLICATION = 'lmnop_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
+if os.getenv('GAE_INSTANCE'):
+    DATABASES = {
 
-    # # Uncomment this when you are ready to use Postgres.
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'lmnop',
-    #     'USER': 'lmnop',
-    #     'PASSWORD': os.environ['LMNOP_DB_PW'],
-    #     'HOST': '/cloudsql/lmnop-271010:us-central1:lmnop',
-    #     'PORT': '5432'
-    # }
-
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lmnop.sqlite',
+        # Uncomment this when you are ready to use Postgres.
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'lmnop',
+            'USER': 'lmnop',
+            'PASSWORD': os.environ['LMNOP_DB_PW'],
+            'HOST': '/cloudsql/lmnop-271010:us-central1:lmnop-new',
+            'PORT': '5432'
+        }
+        # 'default': {
+        #     'ENGINE': 'django.db.backends.sqlite3',
+        #     'NAME': 'lmnop.sqlite',
+        # }
     }
-}
 
-# if not os.getenv('GAE_INSTANCE'):
-#     DATABASES['default']['HOST'] = '127.0.0.1'
+else:
+    # DATABASES['default']['HOST'] = '127.0.0.1'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'lmnop',
+            'USER': 'lmnop',
+            'PASSWORD': os.environ['LMNOP_DB_PW'],
+            'HOST': '127.0.0.1',
+            'PORT': '5432'
+        }
+    }
+    
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
