@@ -27,3 +27,12 @@ urlpatterns = [
     path('', include('lmn.urls') ),
 
 ]
+<<<<<<< HEAD
+=======
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a

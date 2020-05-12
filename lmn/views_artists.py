@@ -12,7 +12,6 @@ from django.utils import timezone
 # Imported Paginator from Django Library
 from django.core.paginator import Paginator
 
-
 def venues_for_artist(request, artist_pk):   # pk = artist_pk
 
     """ Get all of the venues where this artist has played a show """
@@ -31,7 +30,6 @@ def artist_list(request):
     else:
         artists = Artist.objects.all().order_by('name')
 
-    ''' Pagnation happens here '''
     paginator = Paginator(artists, 10) # Variable that takes in 2 arguments Paginator(Post items, how many items)
 
     # Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
@@ -44,5 +42,5 @@ def artist_list(request):
 
 
 def artist_detail(request, artist_pk):
-    artist = get_object_or_404(Artist, pk=artist_pk);
+    artist = get_object_or_404(Artist, pk=artist_pk)
     return render(request, 'lmn/artists/artist_detail.html' , { 'artist': artist })

@@ -1,4 +1,8 @@
 {% extends 'lmn/base.html' %}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 {% block content %}
 
 
@@ -8,6 +12,17 @@ Includes list of user's notes with title and preview of text.
 Text truncated to 200 characters. -->
 
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
+<<<<<<< HEAD
+=======
+ {% if notes.count >= 8 %}
+     <img src="/media/ranking/gold.png" class="user_badge"> YOUR REWARD IS GOLD </img>
+ {% elif notes.count >= 4 %}
+     <img src="/media/ranking/sylver.png" class="user_badge">YOUR REWARD IS SYLVER </img>
+ {% elif notes.count >= 2 %}
+     <img src="/media/ranking/bronze.png" class="user_badge">YOUR REWARD IS BRONZE </img>
+{% endif %}
+<div class="user_count_badge"><p class="note_count">Your Total Note Submissions is : {{ notes.count }}</p>
+>>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 {% for note in notes %}
 
@@ -18,7 +33,10 @@ Text truncated to 200 characters. -->
   <p class="note_posted_at">{{ note.posted_date}}</p>
 </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 {% empty %}
 
     <p id='no_records'>No notes.</p>
@@ -31,6 +49,9 @@ Text truncated to 200 characters. -->
     {% include 'lmn/_pagination.html' with items=notes %}
 {% endif %}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 {% endblock %}

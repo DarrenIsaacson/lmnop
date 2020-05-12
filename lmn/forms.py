@@ -17,13 +17,26 @@ class ArtistSearchForm(forms.Form):
 class NewNoteForm(forms.ModelForm):
     class Meta:
         model = Note
+<<<<<<< HEAD
         fields = ('title', 'text')
+=======
+        fields = ('title', 'text', 'photo')
+
+class NoteEditPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ('photo',)
+>>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 # Added form to edit notes
 class EditNoteForm(forms.ModelForm):
     class Meta:
         model = Note
+<<<<<<< HEAD
         fields = ('title', 'text')
+=======
+        fields = ('title', 'text', 'photo')
+>>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 
 class UserRegistrationForm(UserCreationForm):
