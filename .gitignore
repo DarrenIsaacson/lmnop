@@ -6,5 +6,7 @@ venv
 lmnop.sqlite
 myvenv
 db.sqlite3
+env/
+env
 /static
 .DS_Store
