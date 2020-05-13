@@ -63,7 +63,7 @@ class Show(models.Model):
     show_date = models.DateTimeField(blank=False)
 
     def __str__(self):
-        return 'Show with artist {} at {} on {}'.format(self.artist, self.venue, self.show_date)
+        return 'Show with artist {} at {} on {}, {}. Ages {}'.format(self.artist, self.venue, self.show_date.date(), self.time, self.ages)
 
 
 ''' One user's opinion of one show. '''
