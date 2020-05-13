@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Scraping package &#8212; LMNOP  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scraping.spiders package" href="Scraping.spiders.html" />
+    <link rel="prev" title="Scraping" href="modules.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="scraping-package">
+<h1>Scraping package<a class="headerlink" href="#scraping-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Scraping.spiders.html">Scraping.spiders package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Scraping.spiders.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scraping.spiders.html#module-Scraping.spiders.show_spider">Scraping.spiders.show_spider module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scraping.spiders.html#module-Scraping.spiders">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Scraping.items">
+<span id="scraping-items-module"></span><h2>Scraping.items module<a class="headerlink" href="#module-Scraping.items" title="Permalink to this headline">¶</a></h2>
+<p>Items are objects for spiders to save data into.</p>
+<dl class="py class">
+<dt id="Scraping.items.Artist">
+<em class="property">class </em><code class="sig-prename descclassname">Scraping.items.</code><code class="sig-name descname">Artist</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.items.Artist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scrapy.item.Item</span></code></p>
+<p>The artiest item stores artist information from the show spider’s parse artist method</p>
+<dl class="py attribute">
+<dt id="Scraping.items.Artist.fields">
+<code class="sig-name descname">fields</code><em class="property"> = {'name': {}}</em><a class="headerlink" href="#Scraping.items.Artist.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="Scraping.items.Event">
+<em class="property">class </em><code class="sig-prename descclassname">Scraping.items.</code><code class="sig-name descname">Event</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.items.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scrapy.item.Item</span></code></p>
+<p>The event item stores show information from the show spider</p>
+<dl class="py attribute">
+<dt id="Scraping.items.Event.fields">
+<code class="sig-name descname">fields</code><em class="property"> = {'ages': {}, 'artist': {}, 'date': {}, 'name': {}, 'time': {}, 'url': {}, 'venue': {}}</em><a class="headerlink" href="#Scraping.items.Event.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="Scraping.items.Venue">
+<em class="property">class </em><code class="sig-prename descclassname">Scraping.items.</code><code class="sig-name descname">Venue</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.items.Venue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scrapy.item.Item</span></code></p>
+<p>The venue item stores venue information from the show spider’s parse venue methods</p>
+<dl class="py attribute">
+<dt id="Scraping.items.Venue.fields">
+<code class="sig-name descname">fields</code><em class="property"> = {'city': {}, 'name': {}, 'state': {}}</em><a class="headerlink" href="#Scraping.items.Venue.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Scraping.middlewares">
+<span id="scraping-middlewares-module"></span><h2>Scraping.middlewares module<a class="headerlink" href="#module-Scraping.middlewares" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="Scraping.middlewares.ScrapingDownloaderMiddleware">
+<em class="property">class </em><code class="sig-prename descclassname">Scraping.middlewares.</code><code class="sig-name descname">ScrapingDownloaderMiddleware</code><a class="headerlink" href="#Scraping.middlewares.ScrapingDownloaderMiddleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingDownloaderMiddleware.from_crawler">
+<em class="property">classmethod </em><code class="sig-name descname">from_crawler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">crawler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingDownloaderMiddleware.from_crawler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingDownloaderMiddleware.process_exception">
+<code class="sig-name descname">process_exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">exception</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingDownloaderMiddleware.process_exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingDownloaderMiddleware.process_request">
+<code class="sig-name descname">process_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingDownloaderMiddleware.process_request" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingDownloaderMiddleware.process_response">
+<code class="sig-name descname">process_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">response</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingDownloaderMiddleware.process_response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingDownloaderMiddleware.spider_opened">
+<code class="sig-name descname">spider_opened</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingDownloaderMiddleware.spider_opened" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="Scraping.middlewares.ScrapingSpiderMiddleware">
+<em class="property">class </em><code class="sig-prename descclassname">Scraping.middlewares.</code><code class="sig-name descname">ScrapingSpiderMiddleware</code><a class="headerlink" href="#Scraping.middlewares.ScrapingSpiderMiddleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingSpiderMiddleware.from_crawler">
+<em class="property">classmethod </em><code class="sig-name descname">from_crawler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">crawler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingSpiderMiddleware.from_crawler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingSpiderMiddleware.process_spider_exception">
+<code class="sig-name descname">process_spider_exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">response</span></em>, <em class="sig-param"><span class="n">exception</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingSpiderMiddleware.process_spider_exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingSpiderMiddleware.process_spider_input">
+<code class="sig-name descname">process_spider_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">response</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingSpiderMiddleware.process_spider_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingSpiderMiddleware.process_spider_output">
+<code class="sig-name descname">process_spider_output</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">response</span></em>, <em class="sig-param"><span class="n">result</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingSpiderMiddleware.process_spider_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingSpiderMiddleware.process_start_requests">
+<code class="sig-name descname">process_start_requests</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_requests</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingSpiderMiddleware.process_start_requests" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Scraping.middlewares.ScrapingSpiderMiddleware.spider_opened">
+<code class="sig-name descname">spider_opened</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.middlewares.ScrapingSpiderMiddleware.spider_opened" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Scraping.pipelines">
+<span id="scraping-pipelines-module"></span><h2>Scraping.pipelines module<a class="headerlink" href="#module-Scraping.pipelines" title="Permalink to this headline">¶</a></h2>
+<p>The pipeline file. Pipelines take the items generated by the spiders and process them, in this case by adding infomation to the database.</p>
+<dl class="py class">
+<dt id="Scraping.pipelines.ShowPipeline">
+<em class="property">class </em><code class="sig-prename descclassname">Scraping.pipelines.</code><code class="sig-name descname">ShowPipeline</code><a class="headerlink" href="#Scraping.pipelines.ShowPipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The show pipeline ensures that the artist and venue exist in the database, creates them if they are not, and converts the event item into the show model.</p>
+<dl class="py method">
+<dt id="Scraping.pipelines.ShowPipeline.process_item">
+<code class="sig-name descname">process_item</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em>, <em class="sig-param"><span class="n">spider</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraping.pipelines.ShowPipeline.process_item" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Scraping.settings">
+<span id="scraping-settings-module"></span><h2>Scraping.settings module<a class="headerlink" href="#module-Scraping.settings" title="Permalink to this headline">¶</a></h2>
+<p>This is the scraping settings file. It contains the settings that Scrapy uses.</p>
+</div>
+<div class="section" id="module-Scraping">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Scraping" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">LMNOP</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Scraping</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scraping package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Scraping</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">Scraping</a></li>
+      <li>Next: <a href="Scraping.spiders.html" title="next chapter">Scraping.spiders package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sasha Hegland, Ben Wadsworth, Carson Richmond, Darren Issacson, Youssef Kante.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/source/Scraping.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
