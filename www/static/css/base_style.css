@@ -47,10 +47,10 @@ button {
   padding-right: 10px;
 }
 #login_form input, #registration_form input {
-  color: white;
+  color: black;
 }
 #login_form, #registration_form {
- color: white;
+ color: black;
 }
 
 #login_form.tr, #registration_form.tr {
