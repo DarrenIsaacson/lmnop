@@ -38,6 +38,10 @@ class Venue(models.Model):
 ''' A show - one artist playing at one venue at a particular date. '''
 class Show(models.Model):
     
+<<<<<<< HEAD
+=======
+    show_date = models.DateTimeField(blank=False)
+>>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, blank=False)

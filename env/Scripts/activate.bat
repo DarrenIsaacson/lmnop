@@ -9,10 +9,14 @@ if defined _OLD_CODEPAGE (
 )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\Users\darre\capstone-python\LMNOP\lmnop\env
 =======
 set VIRTUAL_ENV=C:\Users\Carson\Documents\School\ITEC 2905-60 Software Development Capstone\Project5\lmnop\env
 >>>>>>> 28bd989... Moved user profile form to usper_profile.html
+=======
+set VIRTUAL_ENV=C:\Users\Carson\Documents\School\ITEC 2905-60 Software Development Capstone\Project5\lmnop\env
+>>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
 
 if not defined PROMPT set PROMPT=$P$G
 

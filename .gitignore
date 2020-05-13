@@ -3,6 +3,7 @@
 /.vscode
 __pycache__
 <<<<<<< HEAD
+<<<<<<< HEAD
 myvenv
 db.sqlite3
 /static
@@ -11,3 +12,7 @@ db.sqlite3
 venv
 lmnop.sqlite
 >>>>>>> 4bbf0ce... User Profile Object is now being created
+=======
+venv
+lmnop.sqlite
+>>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00

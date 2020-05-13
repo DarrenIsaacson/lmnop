@@ -91,4 +91,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'photo', 'description')
+<<<<<<< HEAD
+=======
+   
+>>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
 

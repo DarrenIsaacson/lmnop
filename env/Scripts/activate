@@ -38,10 +38,14 @@ deactivate () {
 deactivate nondestructive
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 VIRTUAL_ENV="C:\Users\darre\capstone-python\LMNOP\lmnop\env"
 =======
 VIRTUAL_ENV="C:\Users\Carson\Documents\School\ITEC 2905-60 Software Development Capstone\Project5\lmnop\env"
 >>>>>>> 28bd989... Moved user profile form to usper_profile.html
+=======
+VIRTUAL_ENV="C:\Users\Carson\Documents\School\ITEC 2905-60 Software Development Capstone\Project5\lmnop\env"
+>>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

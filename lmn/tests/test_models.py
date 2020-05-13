@@ -45,11 +45,14 @@ class TestUser(TestCase):
             user2.save()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 
 =======
+=======
+>>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
 #Test User Profile, create, update, save picture, delete picture
 class TestUserProfile(TestCase):
     
@@ -95,5 +98,9 @@ class TestUserProfile(TestCase):
         uProfile = UProfile(user=0, birthday='', city='Minneapolis', state='MN', favoriteVenue='First Ave.', favoriteArtist='Kind Country', description='I love local music. Everything from Eydea & Abilities to Trampled by Turtles')
         uProfile.save()
         #test to make sure profile image changed
+<<<<<<< HEAD
         
 >>>>>>> 44515f4... Refined database, created base test functions
+=======
+        
+>>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
