@@ -16,12 +16,27 @@
   <p class="show_info">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</p>
   <P class="note_info">Posted on {{ note.posted_date }} by <a class='user' href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a></p>
   <p class='note_text'>{{ note.text|truncatechars:100 }}</p>
+    <td>
+      <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ note.text }} %23{{ note.show.artist.name }} %23{{ note.show.venue.name }}
+       %23LMNOP"><img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" /></a>
+   </td>
+
+    <td>
+       <a href="http://www.facebook.com/sharer.php?text={{ note.text }} %23{{ note.show.artist.name }} %23{{ note.show.venue.name }}
+       %23LMNOP" target="_blank"><img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+     </a>
+
+
+    </td>
+
+
   {% if note.photo %}
     <p class='note_photo_label'><a href={{ note.photo.url }}>Photo</a></p>
   {% else %}
     <p class='note_photo_label'>No photo uploaded</p>
+
   {% endif %}
-  <hr>
+
 
 {% empty %}
 
@@ -39,6 +54,6 @@ display button to add new note for that show. -->
 </form>
 
 {% endif %}
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5eba107d7cf03e5a"></script>
 
+</div>
 {% endblock %}
