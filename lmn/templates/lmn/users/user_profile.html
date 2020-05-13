@@ -14,8 +14,8 @@ Text truncated to 200 characters. -->
 <h1 id='username'>{{ user.username }}</h1>
 
 <div class='uprofile' id="uprofile_{{ uprofile.pk }}">
-	{%if user.uprofile.photo %}
-		<img src="{{ user.uprofile.photo.url }}">
+	{%if uprofile.photo %}
+		<img src="{{ uprofile.photo.url }}">
 	{% endif %}
 	<p class="user_name">Name: {{user.first_name}}</p>
 	<p class="user_email">Email: <a href="mailto:{{uprofile.user.email}}">{{user.email}}</a></p>

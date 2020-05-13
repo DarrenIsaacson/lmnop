@@ -91,42 +91,4 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'photo', 'description')
-<<<<<<< HEAD
-    
 
-
-    """def save(self, commit=True):
-        UProfile = super(UserProfileForm, self).save(commit=False)
-        UProfile.birthday = self['birthday']
-        uProfile.city = self['city']
-        uProfile.state = self['state']
-        uProfile.favoriteVenue = self['favoriteVenue']
-        uProfile.favoriteArtist = self['favoriteArtist']
-        uProfile.profilePicture = self['profilePicture']
-        uProfile.description = self['description']
-
-        return UProfile   """
-<<<<<<< HEAD
-=======
-    # def save(self, commit=True):
-    #     UProfile = super(UserProfileForm, self).save(commit=False)
-    #     UProfile.birthday = self['birthday']
-    #     uProfile.city = self['city']
-    #     uProfile.state = self['state']
-    #     uProfile.favoriteVenue = self['favoriteVenue']
-    #     uProfile.favoriteArtist = self['favoriteArtist']
-    #     uProfile.profilePicture = self['profilePicture']
-    #     uProfile.description = self['description']
-
-    #     if commit:
-    #         uProfile.save()
-
-    #     return uProfile   
->>>>>>> b2a8b0b... notes on user profile
-=======
-
->>>>>>> 934107d... correct url structur, no form apearing
-=======
-   
-
->>>>>>> e768531... Photo not saving to Model Object

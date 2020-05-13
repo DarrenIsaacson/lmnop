@@ -2,15 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save #https://stackoverflow.com/questions/11488974/django-create-user-profile-on-user-creation
 from django.contrib.auth.models import User
 import datetime
-<<<<<<< HEAD
-<<<<<<< HEAD
-#import birthday
-=======
-# import birthday
->>>>>>> b2a8b0b... notes on user profile
-=======
 
->>>>>>> 934107d... correct url structur, no form apearing
 # Every model gets a primary key field by default.
 
 # Users, venues, shows, artists, notes
@@ -46,10 +38,6 @@ class Venue(models.Model):
 ''' A show - one artist playing at one venue at a particular date. '''
 class Show(models.Model):
     
-<<<<<<< HEAD
-=======
-    show_date = models.DateTimeField(blank=False)
->>>>>>> 88bc6fd... Profile table test updates
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, blank=False)
