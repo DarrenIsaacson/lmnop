@@ -13,11 +13,11 @@ class Event(scrapy.Item):
     date   = scrapy.Field()
 
 class Venue(scrapy.Item):
-    """ The venue item stores venue information from the venue spider """
+    """ The venue item stores venue information from the show spider's parse venue methods """
     name   = scrapy.Field()
     city   = scrapy.Field()
     state  = scrapy.Field()
 
 class Artist(scrapy.Item):
-
+    """ The artiest item stores artist information from the show spider's parse artist method """
     name   = scrapy.Field()

@@ -8,7 +8,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-
+""" This is the scraping settings file. It contains the settings that Scrapy uses. """
 BOT_NAME = 'Scraping'
 
 SPIDER_MODULES = ['Scraping.spiders']
