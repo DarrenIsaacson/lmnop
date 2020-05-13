@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
-
+from django.http import HttpResponseForbidden
 from .models import Venue, Artist, Note, Show, UProfile
 from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, UserProfileForm
 
@@ -17,7 +16,7 @@ def user_profile(request, user_pk):
 
 
     usernotes = Note.objects.filter(user=user.pk).order_by('-posted_date')
-    return render(request, 'lmn/users/user_profile.html', { 'user': user , 'notes': usernotes, })#'loggedIn': loggedIn
+    return render(request, 'lmn/users/user_profile.html', { 'user': user , 'notes': usernotes, })
 
 
 # View to power user editing their own profile
@@ -26,23 +25,23 @@ def user_profile(request, user_pk):
 def my_user_profile(request, user_pk):
     
     uProfile = get_object_or_404(UProfile, pk=user_pk)
+    if uProfile.user != request.user:
+        return HttpResponseForbidden()
 
     if UProfile.objects.filter(pk = user_pk).exists(): #https://stackoverflow.com/questions/11714536/check-if-an-object-exists
         if request.method == 'POST': 
-            form = UserProfileForm(request.POST, instance=request.user.uprofile)
+            form = UserProfileForm( request.POST, request.FILES, instance=request.user.uprofile,)
             if form.is_valid():
                 uProfile = form.save(commit=False)
-                
                 uProfile.user_id = request.user.uprofile #connects the form with the related user to update the correct uprofile model object
                 uProfile.save()                
-                #uProfile = UProfile.objects.get(pk=user_pk)
                 return redirect('lmn:user_profile', request.user.pk) 
             else :
                 message = 'Please check the data you entered'
                 # probably redirect to this page again as a get requet? 
                 return render(request, 'registration/edit-profile.html', {'form': form})
         else :
-            #uProfile = UProfile.objects.get(pk=user_pk)
+            
             form = UserProfileForm() ## figure out user profile object 
             return render(request, 'registration/edit-profile.html', {'form': form, 'user_pk':uProfile.pk }) # 
     else: # create a UProfile for user

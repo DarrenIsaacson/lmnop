@@ -91,6 +91,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'photo', 'description')
+<<<<<<< HEAD
     
 
 
@@ -125,3 +126,7 @@ class UserProfileForm(forms.ModelForm):
 =======
 
 >>>>>>> 934107d... correct url structur, no form apearing
+=======
+   
+
+>>>>>>> e768531... Photo not saving to Model Object

@@ -85,26 +85,21 @@ class UProfile(models.Model):
     state = models.CharField(max_length=2, blank=True, null=True)#change this to true to allow null feilds
     favoriteVenue = models.CharField(max_length=200, blank=True, null=True)
     favoriteArtist = models.CharField(max_length=200, blank=True, null=True)
-    photo = models.ImageField(upload_to='userProfile_image/', blank=True, null=True)
+    photo = models.ImageField(upload_to='profile_image/', blank=True, null=True)
     description = models.TextField(max_length=3000, blank=True, null=True)
 
+    '''def save(self, *args, **kwargs):
+        uProfile= UProfile.objects.filter(pk=self.pk).first()
 
-    #def create_user_profile(self, instance):
-     #   if created:
-        #UProfile.objects.create(user=instance)
+        if uProfile and uProfile.photo:
+            if uProfile.photo != self.photo:
+                self.delete_photo(uProfile.photo)
+        super().save(*args, **kwargs)
 
-    #post_save.connect(create_user_profile, sender=User)
-    '''#scripts to add, update, pull, & delete from the profile
-    def updateUserProfile():
-
-    def saveUserProfilePicture():        
-
-    def deleteUserProfilePicture ():
-
-    def changeUserProfilePicture():'''
-
-
-
+    def delete_photo(self, photo):
+        if default_storage.exists(photo.name):
+            default_storage.delete(photo.name)'''
+    
     def __str_(self):
         photo_str = self.photo.url if self.photo else 'no photo'
         return 'User ID = {}, Birthday = {}, City = {}, State = {}, Favorite Venue = {}, Favorite Artist = {}, Profile Picture {}, Description = {}'.format(self.user, self.fName, self.lName, self.birthday, self.city, self.state, self.favoriteVenue, self.favoriteArtist, self.photo_str, self.description)

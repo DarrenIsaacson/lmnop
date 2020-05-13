@@ -10,23 +10,33 @@
 Includes list of user's notes with title and preview of text.
 Text truncated to 200 characters. -->
 
-<!--TODO add if statement here so only shown if if user is logged in, edit profile button 
-
-
-
--->
 
 <h1 id='username'>{{ user.username }}</h1>
 
 <div class='uprofile' id="uprofile_{{ uprofile.pk }}">
-	
+	{%if user.uprofile.photo %}
+		<img src="{{ user.uprofile.photo.url }}">
+	{% endif %}
 	<p class="user_name">Name: {{user.first_name}}</p>
 	<p class="user_email">Email: <a href="mailto:{{uprofile.user.email}}">{{user.email}}</a></p>
-	<p class="uprofile_birthday">Birthday: {{uprofile.birthday}}</p>
-	<p class="uprofile_city">City: {{uprofile.city}}</p>
-	<p class="uprofile_state">State: {{uprofile.state}}</p>
-	<p class="uprofile_favoriteVenue">Favorite Venue: {{uprofile.favoriteVenue}}</p>
-	<p class="uprofile_description">About Me: {{uprofile.description}}</p>
+	{%if user.uprofile.birthday %}
+		<p class="uprofile_birthday">Birthday: {{user.uprofile.birthday}}</p>
+	{% endif %}
+	{%if user.uprofile.city %}
+		<p class="uprofile_city">City: {{user.uprofile.city}}</p>
+	{% endif %}
+	{%if user.uprofile.state %}
+		<p class="uprofile_state">State: {{user.uprofile.state}}</p>
+	{% endif %}
+	{%if user.uprofile.favoriteVenue %}
+		<p class="uprofile_favoriteVenue">Favorite Venue: {{user.uprofile.favoriteVenue}}</p>
+	{% endif %}
+	{%if user.uprofile.favoriteArtist %}
+		<p class="uprofile_favoriteArtist">Favorite Artist: {{user.uprofile.favoriteArtist}}</p>
+	{% endif %}
+	{%if user.uprofile.description %}
+		<p class="uprofile_description">About Me: {{user.uprofile.description}}</p>
+	{% endif %}
 
 </div>
 

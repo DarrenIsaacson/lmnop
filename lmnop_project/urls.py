@@ -21,9 +21,17 @@ from django.contrib.auth.forms import UserCreationForm
 from lmn import views, views_users
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),    #Admin site
 
     path('', include('lmn.urls') ),
 
 ]
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
