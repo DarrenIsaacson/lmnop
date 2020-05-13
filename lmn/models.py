@@ -79,14 +79,14 @@ class Note(models.Model):
 
 #user profile table
 class UProfile(models.Model):
-    user = models.OneToOneField(User, blank=False, on_delete=models.CASCADE)
-    birthday = models.CharField(max_length=8, blank=True) #blank is for form validation
-    city = models.CharField(max_length=200, blank=True)
-    state = models.CharField(max_length=2, blank=True)#change this to true to allow null feilds
-    favoriteVenue = models.CharField(max_length=200, blank=True)
-    favoriteArtist = models.CharField(max_length=200, blank=True)
+    user = models.OneToOneField(User, blank=True, on_delete=models.CASCADE)
+    birthday = models.CharField(max_length=8, blank=True, null=True) #blank is for form validation
+    city = models.CharField(max_length=200, blank=True, null=True)
+    state = models.CharField(max_length=2, blank=True, null=True)#change this to true to allow null feilds
+    favoriteVenue = models.CharField(max_length=200, blank=True, null=True)
+    favoriteArtist = models.CharField(max_length=200, blank=True, null=True)
     photo = models.ImageField(upload_to='userProfile_image/', blank=True, null=True)
-    description = models.TextField(max_length=3000, blank=True)
+    description = models.TextField(max_length=3000, blank=True, null=True)
 
 
     #def create_user_profile(self, instance):
