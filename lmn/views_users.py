@@ -11,6 +11,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 
 def user_profile(request, user_pk):
+    """ 
+    Summary line. 
+  
+    Extended description of function. 
+  
+    Parameters: 
+    user :
+    usernotes list(objects): Access the page by using the paginator method to get the corrisponding page. The notes variable will only contain 10 artist notes at a time
+    paginator: Variable that takes in 2 arguments for the paginator ex: Paginator(Post items, how many items)
+    page_number: Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
+  
+    Returns: Directs them to html documentation with passing parameters
+  
+    """
+
     user = User.objects.get(pk=user_pk)
     usernotes = Note.objects.filter(user=user.pk).order_by('-posted_date')
     

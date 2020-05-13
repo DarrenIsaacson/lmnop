@@ -12,6 +12,7 @@ from django.core.paginator import Paginator
 
 
 
+
 @login_required
 def new_note(request, show_pk):
 
@@ -34,15 +35,28 @@ def new_note(request, show_pk):
 
 
 def latest_notes(request):
+
+    """ 
+    Summary line. 
+  
+    Extended description of function. 
+  
+    Parameters: 
+    notes list(objects): Access the page by using the paginator method to get the corrisponding page. The notes variable will only contain 10 artist notes at a time
+    paginator: Variable that takes in 2 arguments for the paginator ex: Paginator(Post items, how many items)
+    page_number: Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
+  
+    Returns: Directs them to html documentation with passing parameters
+  
+    """
+
     notes = Note.objects.all().order_by('-posted_date')
 
     ''' Pagnation happens here '''
-    paginator = Paginator(notes, 10) # Variable that takes in 2 arguments Paginator(Post items, how many items)
+    paginator = Paginator(notes, 10) 
 
-    # Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
     page_number = request.GET.get('page') 
 
-    # Access the page by using the paginator method to get the corrisponding page. The notes variable will only contain 10 notes at a time
     notes = paginator.get_page(page_number)
 
     return render(request, 'lmn/notes/note_list.html', { 'notes': notes })
