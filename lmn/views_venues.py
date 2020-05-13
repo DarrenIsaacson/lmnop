@@ -41,5 +41,20 @@ def artists_at_venue(request, venue_pk):   # pk = venue_pk
 
 
 def venue_detail(request, venue_pk):
+    """ 
+    Summary line. 
+  
+    Extended description of function. 
+  
+    Parameters: 
+    forms:
+    search_name:
+    venues list(objects): Access the page by using the paginator method to get the corrisponding page. The notes variable will only contain 10 artist notes at a time
+    paginator: Variable that takes in 2 arguments for the paginator ex: Paginator(Post items, how many items)
+    page_number: Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
+  
+    Returns: Directs them to html documentation with passing parameters
+  
+    """
     venue = get_object_or_404(Venue, pk=venue_pk)
     return render(request, 'lmn/venues/venue_detail.html' , { 'venue': venue })

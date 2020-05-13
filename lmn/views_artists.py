@@ -23,6 +23,23 @@ def venues_for_artist(request, artist_pk):   # pk = artist_pk
 
 
 def artist_list(request):
+    
+    """ 
+    Summary line. 
+  
+    Extended description of function. 
+  
+    Parameters: 
+    forms:
+    search_name:
+    artists list(objects): Access the page by using the paginator method to get the corrisponding page. The notes variable will only contain 10 artist notes at a time
+    paginator: Variable that takes in 2 arguments for the paginator ex: Paginator(Post items, how many items)
+    page_number: Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
+  
+    Returns: Directs them to html documentation with passing parameters
+  
+    """
+
     form = ArtistSearchForm()
     search_name = request.GET.get('search_name')
     if search_name:
