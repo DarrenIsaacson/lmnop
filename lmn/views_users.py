@@ -29,11 +29,11 @@ def my_user_profile(request, user_pk):
 
     if UProfile.objects.filter(pk = user_pk).exists(): #https://stackoverflow.com/questions/11714536/check-if-an-object-exists
         if request.method == 'POST': 
-            form = UserProfileForm(request.POST)
+            form = UserProfileForm(request.POST, instance=request.user.uprofile)
             if form.is_valid():
                 uProfile = form.save(commit=False)
-                #uProfile.user_id = uProfile.pk
-                uProfile.user_id = request.user           
+                
+                uProfile.user_id = request.user.uprofile #connects the form with the related user to update the correct uprofile model object
                 uProfile.save()                
                 #uProfile = UProfile.objects.get(pk=user_pk)
                 return redirect('lmn:user_profile', request.user.pk) 

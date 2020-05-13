@@ -85,6 +85,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'photo', 'description')
+    
 
 
     """def save(self, commit=True):
