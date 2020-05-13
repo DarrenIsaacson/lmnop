@@ -9,7 +9,6 @@
 
 from datetime import datetime
 from lmn.models import Show, Venue, Artist as Artist_Model
-from Scraping.spiders.venue_spider import VenueSpider
 from scrapy.crawler import CrawlerProcess
 import Scraping.items
 
