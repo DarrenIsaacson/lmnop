@@ -30,19 +30,14 @@ def my_user_profile(request, user_pk):
 
     if UProfile.objects.filter(pk = user_pk).exists(): #https://stackoverflow.com/questions/11714536/check-if-an-object-exists
         if request.method == 'POST': 
-<<<<<<< HEAD
             form = UserProfileForm( request.POST, request.FILES, instance=request.user.uprofile)#Found request.Files in wishlist, instance solution at https://docs.djangoproject.com/
-=======
-            form = UserProfileForm( request.POST, request.FILES, instance=request.user.uprofile,)
->>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
             if form.is_valid():
                 uProfile = form.save(commit=False)
                 uProfile.user_id = request.user.uprofile #connects the form with the related user to update the correct uprofile model object
                 uProfile.save()                
                 return redirect('lmn:user_profile', request.user.pk) 
             else :
-                message = 'Please check the data you entered'
-                # probably redirect to this page again as a get requet? 
+                message = 'Please check the data you entered' 
                 return render(request, 'registration/edit-profile.html', {'form': form})
         else :
             

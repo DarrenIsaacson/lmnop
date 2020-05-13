@@ -38,10 +38,6 @@ class Venue(models.Model):
 ''' A show - one artist playing at one venue at a particular date. '''
 class Show(models.Model):
     
-<<<<<<< HEAD
-=======
-    show_date = models.DateTimeField(blank=False)
->>>>>>> e7685314f524d9679c55296cdf0733139a8dfa00
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, blank=False)
@@ -80,7 +76,7 @@ class UProfile(models.Model):
     photo = models.ImageField(upload_to='profile_image/', blank=True, null=True)
     description = models.TextField(max_length=3000, blank=True, null=True)
 
-    '''def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         uProfile= UProfile.objects.filter(pk=self.pk).first()
 
         if uProfile and uProfile.photo:
@@ -90,7 +86,7 @@ class UProfile(models.Model):
 
     def delete_photo(self, photo):
         if default_storage.exists(photo.name):
-            default_storage.delete(photo.name)'''
+            default_storage.delete(photo.name)
     
     def __str_(self):
         photo_str = self.photo.url if self.photo else 'no photo'
