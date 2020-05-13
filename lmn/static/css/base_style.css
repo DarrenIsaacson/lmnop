@@ -46,15 +46,12 @@ button {
   right: 0px;
   padding-right: 10px;
 }
-<<<<<<< HEAD
-=======
 #login_form input, #registration_form input {
   color: black;
 }
 #login_form, #registration_form {
  color: black;
 }
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 #login_form.tr, #registration_form.tr {
   padding-top: 2px;
@@ -64,8 +61,6 @@ button {
 #login_form.th, #registration_form.th {
   text-align: right;
 }
-<<<<<<< HEAD
-=======
   .venue-search-input, .artist-search-input, .user-input {
   color: black !important;
 }
@@ -152,4 +147,3 @@ button {
   width: 300px;
   height: 300px;
 }
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a

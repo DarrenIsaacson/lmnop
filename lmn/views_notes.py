@@ -1,13 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Venue, Artist, Note, Show
-<<<<<<< HEAD
-from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, EditNoteForm
-
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-=======
 from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, EditNoteForm, NoteEditPhotoForm
 
 from django.http import HttpResponseForbidden
@@ -15,16 +8,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 # Imported Paginator from Django Library
 from django.core.paginator import Paginator
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 @login_required
 def new_note(request, show_pk):
 
@@ -37,10 +24,7 @@ def new_note(request, show_pk):
             note = form.save(commit=False)
             note.user = request.user
             note.show = show
-<<<<<<< HEAD
-=======
             note.posted_date = timezone.now()
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
             note.save()
             return redirect('lmn:note_detail', note_pk=note.pk)
 
@@ -75,9 +59,6 @@ def notes_for_show(request, show_pk):   # pk = show pk
 
 def note_detail(request, note_pk):
     note = get_object_or_404(Note, pk=note_pk)
-<<<<<<< HEAD
-    return render(request, 'lmn/notes/note_detail.html' , { 'note': note })
-=======
 
     if request.method == 'POST':
         photo_form = NoteEditPhotoForm(request.POST, request.FILES, instance=note)
@@ -91,7 +72,6 @@ def note_detail(request, note_pk):
         photo_form = NoteEditPhotoForm(instance=note)
     
     return render(request, 'lmn/notes/note_detail.html' , { 'note': note, 'photo_form': photo_form })
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
 
 # Added function to edit notes 
 def edit_note(request, note_pk):
@@ -99,11 +79,7 @@ def edit_note(request, note_pk):
 
     if request.method == 'POST' :
 
-<<<<<<< HEAD
-        form = EditNoteForm(request.POST, instance=note)
-=======
         form = EditNoteForm(request.POST, request.FILES, instance=note)
->>>>>>> 6fe25741f364a256478dd03a891a2000cdba654a
         if form.is_valid():
             note = form.save(commit=False)
             note.save()
