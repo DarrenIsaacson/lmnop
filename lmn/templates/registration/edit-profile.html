@@ -8,6 +8,7 @@
   <P>{{ message }}</p>
 {% endif %}
 
+<h1>Edit Your Profile, {{user.username}}</h1>
 <form method='post' action="{% url 'lmn:my_user_profile' user_pk=user.pk %}">
 	{% csrf_token %}
 	<table id="user_profile_form">

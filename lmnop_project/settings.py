@@ -136,6 +136,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+#Media URL, for user-created media - becomes part of the URL when images are displayed
+MEDIA_URL = '/media/'
+
+#Where in the file system to save user-uploaded files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Where to send user after successful login if no other page is provided.
 # Should provide the user object.
 LOGIN_REDIRECT_URL = 'lmn:my_user_profile'

@@ -85,18 +85,5 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UProfile
         fields = ('birthday', 'city', 'state', 'favoriteVenue', 'favoriteArtist', 'photo', 'description')
-    
-
-
-    """def save(self, commit=True):
-        UProfile = super(UserProfileForm, self).save(commit=False)
-        UProfile.birthday = self['birthday']
-        uProfile.city = self['city']
-        uProfile.state = self['state']
-        uProfile.favoriteVenue = self['favoriteVenue']
-        uProfile.favoriteArtist = self['favoriteArtist']
-        uProfile.profilePicture = self['profilePicture']
-        uProfile.description = self['description']
-
-        return UProfile   """
+   
 
