@@ -47,12 +47,13 @@ def artist_list(request):
         artists = Artist.objects.filter(name__icontains=search_name).order_by('name')
     else:
         artists = Artist.objects.all().order_by('name')
-    paginator = Paginator(artists, 10) 
 
-    
+    paginator = Paginator(artists, 10) # Variable that takes in 2 arguments Paginator(Post items, how many items)
+
+    # Variable that uses the http request.GET.get to gather the page number that will be passed to the view.
     page_number = request.GET.get('page')
 
-    
+    # Access the page by using the paginator method to get the corrisponding page. The venues variable will only contain 10 notes at a time
     artists = paginator.get_page(page_number)
 
     return render(request, 'lmn/artists/artist_list.html', { 'artists': artists, 'form': form, 'search_term': search_name })
