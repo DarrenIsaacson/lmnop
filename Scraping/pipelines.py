@@ -11,6 +11,8 @@ from datetime import datetime
 from lmn.models import Show, Venue, Artist as Artist_Model
 from scrapy.crawler import CrawlerProcess
 import Scraping.items
+from django.core.exceptions import ValidationError
+
 
 class ShowPipeline(object):
     """ The show pipeline ensures that the artist and venue exist in the database, creates them if they are not, and converts the event item into the show model. """
@@ -18,13 +20,19 @@ class ShowPipeline(object):
         if isinstance(item, Scraping.items.Venue):
             venue = Venue(name=item['name'], city=item['city'], state=item['state'])
             if not Venue.objects.filter(name=item['name']).exists():
-                venue.save()
+                if venue['name'] and venue['city' and venue['state']]:
+                    venue.save()
+                else:
+                    print('Error saving venue: '+ venue['name'] + '. Field missing.')
             return item
 
         if isinstance(item, Scraping.items.Event):
             artist = Artist_Model(name=item['artist'])
             if not Artist_Model.objects.filter(name=item['artist']).exists():
-                artist.save()
+                if artist['name']:
+                    artist.save()
+                else: 
+                    print("Error saving artist: Name missing.")
 
             if not Show.objects.filter(url=item['url']).exists():
                 date_object = datetime.strptime(item['date'], '%A, %B %d, %Y')
@@ -32,7 +40,9 @@ class ShowPipeline(object):
                 artist = Artist_Model.objects.get(name=item['artist'])
                 venue = Venue.objects.get(name=item['venue'])
                 show = Show(artist = artist, venue = venue, name = item['name'], url = item['url'], time = item['time'], ages = item['ages'], show_date = date_object)
-                show.save()
-
+                try:
+                    show.save()
+                except ValidationError as ve:
+                    print('Error saveing show: ' + ve)
         return item
 
