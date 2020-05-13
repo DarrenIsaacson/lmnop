@@ -8,7 +8,7 @@
 {% for show in shows %}
 
 <div class="show" id="show_{{ show.pk }}">
-  <P>{{ show.artist.name}} on {{ show.show_date }}.
+  <P>{{ show.artist.name}} on {{ show.show_date|date:'Y-m-d' }}, {{ show.time }}.
     <a href="{% url 'lmn:notes_for_show' show_pk=show.pk %}">See notes for this show, and add your own</a>
   </P>
 </div>
