@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate, login, logout
 # Imported Paginator from Django Library
 from django.core.paginator import Paginator
 
-
 def venue_list(request):
     form = VenueSearchForm()
     search_name = request.GET.get('search_name')
@@ -21,8 +20,6 @@ def venue_list(request):
     else :
         # created a paginator variable
         venues = Venue.objects.all().order_by('name')
-        
-    ''' Pagnation happens here '''
     paginator = Paginator(venues, 10) # Variable that takes in 2 arguments Paginator(Post items, how many items)
 
     # Variable that uses the http request.GET.get to gather the page number that will be passed to the view.

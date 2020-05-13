@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -23,10 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8c01$#j44g3znb)$q0()8)!%ts-jc)k12!a75-!63qb%bj=d4k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
+
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -50,7 +50,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 ROOT_URLCONF = 'lmnop_project.urls'
 
 TEMPLATES = [
@@ -71,31 +70,40 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lmnop_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
+if os.getenv('GAE_INSTANCE'):
+    DATABASES = {
 
-# Uncomment this when you are ready to use Postgres.
-
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'lmnop',
-    #     'USER' : 'lmnop',
-    #     'PASSWORD' : os.environ['LMNOP_DB_PW'],
-    #     'HOST' : 'localhost',
-    #     'PORT' : '5432',
-    # },
-
-    # When you use Postgres, comment out or remove this DB config. 
-    
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lmnop.sqlite',
+        # Uncomment this when you are ready to use Postgres.
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'lmnop',
+            'USER': 'lmnop',
+            'PASSWORD': os.environ['LMNOP_DB_PW'],
+            'HOST': '/cloudsql/lmnop-271010:us-central1:lmnop-new',
+            'PORT': '5432'
+        }
+        # 'default': {
+        #     'ENGINE': 'django.db.backends.sqlite3',
+        #     'NAME': 'lmnop.sqlite',
+        # }
     }
-}
 
+else:
+    # DATABASES['default']['HOST'] = '127.0.0.1'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'lmnop',
+            'USER': 'lmnop',
+            'PASSWORD': os.environ['LMNOP_DB_PW'],
+            'HOST': '127.0.0.1',
+            'PORT': '5432'
+        }
+    }
+    
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -115,7 +123,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -129,12 +136,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
 
 # Where to send user after successful login if no other page is provided.
 # Should provide the user object.
@@ -142,3 +148,23 @@ LOGIN_REDIRECT_URL = 'lmn:my_user_profile'
 ''' Commented out so the logout process usess the URL on lmn/urls.py,
 LOGOUT_REDIRECT_URL = 'lmn:homepage'
 '''
+
+# MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if os.getenv('GAE_INSTANCE'):
+    GS_STATIC_FILE_BUCKET = 'lmnop-271010.appspot.com'
+
+    STATIC_URL = f'https://storage.cloud.google.com/{GS_STATIC_FILE_BUCKET}/static/'
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = 'user-notes-pics'
+    MEDIA_URL = f'https://storage.cloud.google.com/{GS_BUCKET_NAME}/media/'
+
+    from google.oauth2 import service_account
+
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file('lmnop-271010-credentials.json')
+
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
